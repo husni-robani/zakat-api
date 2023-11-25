@@ -3,6 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\DonationType;
+use App\Models\GoodType;
+use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +16,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        User::create([
+            'email' => 'admin@example.com',
+            'name' => 'admin',
+            'password' => 'password'
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        (new DonationTypeSeeder())->run();
+        (new GoodTypeSeeder())->run();
+        (new WalletSeeder())->run();
+        (new ResidentSeeder())->run();
+        (new DonorSeeder())->run();
+        (new TransactionSeeder())->run();
+//        (new DistributionSeeder())->run();
     }
 }

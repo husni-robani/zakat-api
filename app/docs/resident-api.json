@@ -1,0 +1,47 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Resident API Doc",
+        "description": "Resident API Doc",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https"
+        }
+    ],
+    "paths": {
+        "/api/resident": {
+            "get": {
+                "description": "get all resident",
+                "responses": {
+                    "200": {
+                        "description": "get residents success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "no_kk": {
+                                                    "type": "string"
+                                                },
+                                                "house_number": {
+                                                    "type": "string"
+                                                },
+                                                "total_muzaki": {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

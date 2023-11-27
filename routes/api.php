@@ -23,6 +23,9 @@ Route::middleware('auth')->group(function (){
     Route::post('/residents', [\App\Http\Controllers\ResidentController::class, 'store']);
     Route::delete('/residents/{no_kk}', [\App\Http\Controllers\ResidentController::class, 'destroy']);
     Route::patch('/residents/{no_kk}', [\App\Http\Controllers\ResidentController::class, 'update']);
+
+    Route::get('/guests', [\App\Http\Controllers\GuestController::class, 'index']);
+    Route::post('/guests', [\App\Http\Controllers\GuestController::class, 'store']);
 });
 
 Route::get('/residents/{no_kk}', [\App\Http\Controllers\ResidentController::class, 'show']);

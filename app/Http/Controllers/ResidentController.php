@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreResidentRequest;
+use App\Http\Requests\UpdateResidentRequest;
 use App\Http\Resources\ResidentResource;
 use App\Models\Resident;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -86,7 +87,7 @@ class ResidentController extends Controller
         );
     }
 
-    public function update(Request $request, $no_kk){
+    public function update(UpdateResidentRequest $request, $no_kk){
         try {
             $resident = Resident::where('no_kk', $no_kk)->firstOrFail();
             $resident->update($request->all());

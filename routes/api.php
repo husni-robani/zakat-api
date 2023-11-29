@@ -29,3 +29,4 @@ Route::middleware('auth')->group(function (){
 });
 
 Route::get('/residents/{no_kk}', [\App\Http\Controllers\ResidentController::class, 'show']);
+Route::get('/donations', [\App\Http\Controllers\DonationTypeController::class, 'index']);

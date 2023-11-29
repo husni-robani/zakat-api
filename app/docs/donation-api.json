@@ -1,0 +1,45 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Donation type api documentation",
+        "description": "Donation type api documentation",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https"
+        }
+    ],
+    "paths": {
+        "/api/donations" : {
+            "get" : {
+                "description": "Get all donations type",
+                "responses": {
+                    "200" : {
+                        "description": "Success to get all donation types",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id" : {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

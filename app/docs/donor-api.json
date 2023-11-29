@@ -1,0 +1,58 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Donor API documentation",
+        "description": "Donor API documentation",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https"
+        }
+    ],
+    "paths": {
+        "/api/donors": {
+            "get": {
+                "description": "Get all donors",
+                "responses": {
+                    "200": {
+                        "description": "Success to get all donors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data" : {
+                                            "type": "object",
+                                            "properties": {
+                                                "name" : {
+                                                    "type": "string"
+                                                },
+                                                "phone": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "format": "email"
+                                                },
+                                                "donorable_type": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

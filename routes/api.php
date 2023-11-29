@@ -17,3 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth')->group(function (){
+    Route::get('/residents', [\App\Http\Controllers\ResidentController::class, 'index']);
+    Route::post('/residents', [\App\Http\Controllers\ResidentController::class, 'store']);
+    Route::delete('/residents/{no_kk}', [\App\Http\Controllers\ResidentController::class, 'destroy']);
+    Route::patch('/residents/{no_kk}', [\App\Http\Controllers\ResidentController::class, 'update']);
+
+    Route::get('/guests', [\App\Http\Controllers\GuestController::class, 'index']);
+    Route::post('/guests', [\App\Http\Controllers\GuestController::class, 'store']);
+    Route::get('/donors', [\App\Http\Controllers\DonorController::class, 'index']);
+});
+
+Route::get('/residents/{no_kk}', [\App\Http\Controllers\ResidentController::class, 'show']);
+Route::get('/donations', [\App\Http\Controllers\DonationTypeController::class, 'index']);

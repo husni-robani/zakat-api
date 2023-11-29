@@ -1,0 +1,246 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Resident API Doc",
+        "description": "Resident API Doc",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https"
+        }
+    ],
+    "paths": {
+        "/api/residents": {
+            "get": {
+                "description": "get all resident",
+                "responses": {
+                    "200": {
+                        "description": "get residents success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "no_kk": {
+                                                    "type": "string"
+                                                },
+                                                "house_number": {
+                                                    "type": "string"
+                                                },
+                                                "total_muzaki": {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "store new resident",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": ["no_kk", "house_number", "total_muzaki"],
+                                "properties": {
+                                    "no_kk": {
+                                        "type": "string"
+                                    },
+                                    "house_number": {
+                                        "type": "string"
+                                    },
+                                    "total_muzaki": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success create new resident",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "no_kk": {
+                                                    "type": "string"
+                                                },
+                                                "house_number": {
+                                                    "type": "string"
+                                                },
+                                                "total_muzaki": {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/residents/{no_kk}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "no_kk",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "description": "Get resident by no_kk",
+                "responses": {
+                    "200": {
+                        "description": "success to get resident",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "no_kk": {
+                                                    "type": "string"
+                                                },
+                                                "house_number": {
+                                                    "type": "string"
+                                                },
+                                                "total_muzaki": {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete resident by no_kk",
+                "parameters": [
+                    {
+                        "name": "no_kk",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "success to delete",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "update resident inforamtion",
+                "parameters": [
+                    {
+                        "name": "no_kk",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "no_kk": {
+                                        "type": "string"
+                                    },
+                                    "house_number": {
+                                        "type": "string"
+                                    },
+                                    "total_muzaki": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success to update resident",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "no_kk": {
+                                                    "type": "string"
+                                                },
+                                                "house_number": {
+                                                    "type": "string"
+                                                },
+                                                "total_muzaki": {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/guests', [\App\Http\Controllers\GuestController::class, 'index']);
     Route::post('/guests', [\App\Http\Controllers\GuestController::class, 'store']);
+    Route::get('/donors', [\App\Http\Controllers\DonorController::class, 'index']);
 });
 
 Route::get('/residents/{no_kk}', [\App\Http\Controllers\ResidentController::class, 'show']);

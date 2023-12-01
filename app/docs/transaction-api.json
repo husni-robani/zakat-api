@@ -1,0 +1,327 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Transaction API documentation",
+        "description": "Transaction API documentation",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https"
+        }
+    ],
+    "paths": {
+        "/api/transactions": {
+            "get": {
+                "description": "Get all transactions",
+                "responses": {
+                    "200": {
+                        "description": "Success to get all transactions",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "amount": {
+                                                    "type": "integer"
+                                                },
+                                                "description": {
+                                                    "type": "string"
+                                                },
+                                                "donor": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string"
+                                                        },
+                                                        "phone_number": {
+                                                            "type": "string"
+                                                        },
+                                                        "email": {
+                                                            "type": "string"
+                                                        },
+                                                        "donorable_type": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "wallet": {
+                                                    "type": "string"
+                                                },
+                                                "good_type": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/transactions/create": {
+            "post": {
+                "description": "Store guest transcation",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": ["name", "amount", "donation_types_id", "good_types_id", "phone_number"],
+                                "type": "object",
+                                "properties": {
+                                    "amount": {
+                                        "type": "integer"
+                                    },
+                                    "description_transaction": {
+                                        "type": "string"
+                                    },
+                                    "donation_types_id": {
+                                        "type": "integer",
+                                        "pattern": "id"
+                                    },
+                                    "good_types_id": {
+                                        "type": "integer",
+                                        "pattern": "id"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "phone_number": {
+                                        "type": "string",
+                                        "pattern": "phone"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "pattern": "email"
+                                    },
+                                    "description_guest": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "success to create guest transaction",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "amount": {
+                                                    "type": "integer"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "donation_type": {
+                                                    "type": "string"
+                                                },
+                                                "donor": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string"
+                                                        },
+                                                        "phone_number": {
+                                                            "type": "string"
+                                                        },
+                                                        "email": {
+                                                            "type": "string"
+                                                        },
+                                                        "donorable_type": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "wallet": {
+                                                    "type": "string"
+                                                },
+                                                "good_type": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/transactions/create/{no_kk}": {
+            "post": {
+                "description": "create resident transction",
+                "parameters": [
+                    {
+                        "name": "no_kk",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": ["name", "amount", "donation_types_id", "good_types_id", "phone_number"],
+                                "type": "object",
+                                "properties": {
+                                    "amount": {
+                                        "type": "integer"
+                                    },
+                                    "description_transaction": {
+                                        "type": "string"
+                                    },
+                                    "donation_types_id": {
+                                        "type": "integer",
+                                        "pattern": "id"
+                                    },
+                                    "good_types_id": {
+                                        "type": "integer",
+                                        "pattern": "id"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "phone_number": {
+                                        "type": "string",
+                                        "pattern": "phone"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "pattern": "email"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success to create resident transaction",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "amount": {
+                                                    "type": "integer"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "donation_type": {
+                                                    "type": "string"
+                                                },
+                                                "donor": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "name": {
+                                                            "type": "string"
+                                                        },
+                                                        "phone_number": {
+                                                            "type": "string"
+                                                        },
+                                                        "email": {
+                                                            "type": "string"
+                                                        },
+                                                        "donorable_type": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "wallet": {
+                                                    "type": "string"
+                                                },
+                                                "good_type": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/transactions/completed/{id_transactions}": {
+            "post": {
+                "description": "make transaction status completed true",
+                "parameters": [
+                    {
+                        "name": "id_transactions",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "pattern": "id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "success to make transaction completed status to true",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

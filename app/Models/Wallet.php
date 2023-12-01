@@ -26,4 +26,12 @@ class Wallet extends Model
     {
         return $this->hasMany(Transaction::class, 'wallets_id');
     }
+
+    public function addAmount($amount){
+        $this->update([
+            'amount' => $this->amount + $amount
+        ]);
+
+        return $this;
+    }
 }

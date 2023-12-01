@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('amount');
             $table->text('description')->nullable();
+            $table->boolean('completed')->default(false);
             $table->foreignId('donation_types_id')->constrained()->cascadeOnDelete();
             $table->foreignId('donors_id')->constrained()->cascadeOnDelete();
             $table->foreignId('wallets_id')->constrained()->cascadeOnDelete();

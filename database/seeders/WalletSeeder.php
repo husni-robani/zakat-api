@@ -17,7 +17,7 @@ class WalletSeeder extends Seeder
         GoodType::all()->map(function ($goodType){
             DonationType::all()->map(function ($donationType) use ($goodType){
                 $donationType->wallet()->create([
-                    'name' => $donationType->name . ' Wallet',
+                    'name' => $donationType->name . ' (' . $goodType->name . ")",
                     'amount' => 0,
                     'good_types_id' => $goodType->id
                 ]);

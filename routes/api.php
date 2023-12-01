@@ -27,7 +27,16 @@ Route::middleware('auth')->group(function (){
     Route::get('/guests', [\App\Http\Controllers\GuestController::class, 'index']);
     Route::post('/guests', [\App\Http\Controllers\GuestController::class, 'store']);
     Route::get('/donors', [\App\Http\Controllers\DonorController::class, 'index']);
+
+    Route::get('/transactions', [\App\Http\Controllers\TransactionController::class, 'index']);
+    Route::post('/transactions/create/{no_kk}', [\App\Http\Controllers\TransactionController::class, 'storeResidentTransaction']);
+    Route::post('/transactions/create', [\App\Http\Controllers\TransactionController::class, 'storeGuestTransaction']);
+    Route::post('/transactions/completed/{id_transaction}', [\App\Http\Controllers\TransactionController::class, 'transactionCompleted']);
 });
 
 Route::get('/residents/{no_kk}', [\App\Http\Controllers\ResidentController::class, 'show']);
 Route::get('/donations', [\App\Http\Controllers\DonationTypeController::class, 'index']);
+
+
+
+

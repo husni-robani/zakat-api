@@ -9,7 +9,6 @@ use App\Models\ServiceHour;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Database\Seeder;
-use App\Models\Appointment;
 
 class DatabaseSeeder extends Seeder
 {

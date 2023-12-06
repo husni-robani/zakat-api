@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Resources\TransactionResource;
+use App\Mail\TransactionCompleted;
 use App\Models\Donor;
 use App\Models\Guest;
 use App\Models\Resident;
@@ -13,6 +14,7 @@ use App\Services\TransactionService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponses;
+use Illuminate\Support\Facades\Mail;
 
 class TransactionController extends Controller
 {
@@ -77,6 +79,7 @@ class TransactionController extends Controller
         try {
             $transaction = Transaction::findOrFail($id_transaction);
             $transactionService->makeCompletedStatusTrue($transaction);
+            Mail::to($transaction->donor->email)->send(new TransactionCompleted());
         }catch (ModelNotFoundException | \Exception $exception){
             return $this->responseFailed(
                 'Completed transaction failed',

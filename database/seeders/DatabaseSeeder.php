@@ -5,9 +5,11 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\DonationType;
 use App\Models\GoodType;
+use App\Models\ServiceHour;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Database\Seeder;
+use App\Models\Appointment;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +22,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
             'name' => 'admin',
             'password' => 'password'
+        ]);
+
+        ServiceHour::create([
+            'day' => 'Senin',
+            'open' => '14:00:00',
+            'close' => '18:00:00'
         ]);
 
         (new DonationTypeSeeder())->run();

@@ -79,7 +79,6 @@ class TransactionController extends Controller
         try {
             $transaction = Transaction::findOrFail($id_transaction);
             $transactionService->makeCompletedStatusTrue($transaction);
-            Mail::to($transaction->donor->email)->send(new TransactionCompleted());
         }catch (ModelNotFoundException | \Exception $exception){
             return $this->responseFailed(
                 'Completed transaction failed',

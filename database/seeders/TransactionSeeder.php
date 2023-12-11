@@ -30,16 +30,28 @@ class TransactionSeeder extends Seeder
 //        $transaction->wallet->amount += $transaction->amount;
 //        $transaction->wallet->save();
 
-        $transaction = Transaction::create([
-            'amount' => 15000000,
-            'donation_types_id' => DonationType::first()->id,
-            'donors_id' => Donor::first()->id,
-            'wallets_id' => Wallet::first()->id,
-            'good_types_id' => GoodType::first()->id
-        ]);
+        $transaction = Transaction::create(
+            [
+                'amount' => 150000,
+                'donation_types_id' => DonationType::first()->id,
+                'donors_id' => Donor::first()->id,
+                'wallets_id' => Wallet::first()->id,
+                'good_types_id' => GoodType::first()->id
+            ]
+        );
 
+        $transaction = Transaction::create(
+            [
+                'amount' => 200000,
+                'donation_types_id' => DonationType::first()->id,
+                'donors_id' => Donor::first()->id,
+                'wallets_id' => Wallet::first()->id,
+                'good_types_id' => GoodType::first()->id
+            ]
+
+        );
         Wallet::find($transaction->wallets_id)->update([
-            'amount' => 15000000
+            'amount' => 350000
         ]);
     }
 }

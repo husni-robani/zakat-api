@@ -14,13 +14,16 @@ class TransactionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+
         return [
             'amount' => $this->amount,
             'description' => $this->description,
             'donation_type' => $this->donationType->name,
             'donor' => new DonorResource($this->donor),
             'wallet' => $this->wallet->name,
-            'good_type' => $this->goodType->name
+            'good_type' => $this->goodType->name,
         ];
     }
+
+
 }

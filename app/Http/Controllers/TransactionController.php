@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTransactionRequest;
+use App\Http\Resources\TransactionCollection;
 use App\Http\Resources\TransactionResource;
 use App\Mail\TransactionCompleted;
 use App\Models\Donor;
@@ -21,7 +22,7 @@ class TransactionController extends Controller
     use ApiResponses;
     public function index(){
         try {
-            $transactions = Transaction::all();
+            $transactions = Transaction::query()->paginate();
         }catch (ModelNotFoundException | \Exception $exception){
             return $this->responseFailed(
                 'Failed to get all transaction',
@@ -29,12 +30,7 @@ class TransactionController extends Controller
                 $exception->getMessage()
             );
         }
-
-        return $this->responseSuccess(
-            'Success to get all transaction',
-            200,
-            TransactionResource::collection($transactions)
-        );
+        return TransactionResource::collection($transactions);
     }
 
     public function storeResidentTransaction(StoreTransactionRequest $request, DonorService $donorService, TransactionService $transactionService){

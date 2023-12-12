@@ -13,7 +13,7 @@ class DonorController extends Controller
     use ApiResponses;
     public function index(){
         try {
-            $donors = Donor::all();
+            $donors = Donor::paginate();
         }catch (\Exception$exception ){
             return $this->responseFailed(
                 'Failed to get all donor',
@@ -21,10 +21,12 @@ class DonorController extends Controller
                 $exception->getMessage()
             );
         }
-        return $this->responseSuccess(
-            'Success to get all donor',
-            200,
-            DonorResource::collection($donors)
-        );
+
+        return DonorResource::collection($donors);
+//        return $this->responseSuccess(
+//            'Success to get all donor',
+//            200,
+//            DonorResource::collection($donors)
+//        );
     }
 }

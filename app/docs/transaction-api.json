@@ -22,12 +22,6 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "status": {
-                                            "type": "string"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        },
                                         "data": {
                                             "type": "object",
                                             "properties": {
@@ -35,6 +29,9 @@
                                                     "type": "integer"
                                                 },
                                                 "description": {
+                                                    "type": "string"
+                                                },
+                                                "donation_type": {
                                                     "type": "string"
                                                 },
                                                 "donor": {
@@ -47,7 +44,8 @@
                                                             "type": "string"
                                                         },
                                                         "email": {
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "pattern": "email"
                                                         },
                                                         "donorable_type": {
                                                             "type": "string"
@@ -59,6 +57,52 @@
                                                 },
                                                 "good_type": {
                                                     "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "links": {
+                                            "type": "object",
+                                            "properties": {
+                                                "first": {
+                                                    "type": "string"
+                                                },
+                                                "last": {
+                                                    "type": "string"
+                                                },
+                                                "prev": {
+                                                    "type": "string"
+                                                },
+                                                "next": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "meta": {
+                                            "type": "object",
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer"
+                                                },
+                                                "from": {
+                                                    "type": "integer"
+                                                },
+                                                "last_page": {
+                                                    "type": "integer"
+                                                },
+                                                "links": {
+                                                    "type": "object"
+                                                },
+                                                "path": {
+                                                    "type": "string"
+                                                },
+                                                "per_page": {
+                                                    "type": "integer"
+                                                },
+                                                "to": {
+                                                    "type": "integer"
+                                                },
+                                                "total": {
+                                                    "type": "integer"
                                                 }
                                             }
                                         }

@@ -14,7 +14,7 @@ class GuestController extends Controller
     use ApiResponses;
     public function index(Request $request){
         try {
-            $guests = Guest::all();
+            $guests = Guest::paginate();
         }catch (ModelNotFoundException | \Exception $exception){
             return $this->responseFailed(
                 'Failed to get guests',
@@ -22,11 +22,12 @@ class GuestController extends Controller
                 $exception->getMessage()
             );
         }
-        return $this->responseSuccess(
-            'Success to get guests',
-            200,
-            GuestResource::collection($guests)
-        );
+        return GuestResource::collection($guests);
+//        return $this->responseSuccess(
+//            'Success to get guests',
+//            200,
+//            GuestResource::collection($guests)
+//        );
     }
 
     public function store(StoreGuestRequest $request){

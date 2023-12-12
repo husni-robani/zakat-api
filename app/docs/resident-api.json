@@ -23,6 +23,7 @@
                                     "type": "object",
                                     "properties": {
                                         "data": {
+                                            "type": "object",
                                             "properties": {
                                                 "no_kk": {
                                                     "type": "string"
@@ -31,6 +32,52 @@
                                                     "type": "string"
                                                 },
                                                 "total_muzaki": {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        },
+                                        "links": {
+                                            "type": "object",
+                                            "properties": {
+                                                "first": {
+                                                    "type": "string"
+                                                },
+                                                "last": {
+                                                    "type": "string"
+                                                },
+                                                "prev": {
+                                                    "type": "string"
+                                                },
+                                                "next": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "meta": {
+                                            "type": "object",
+                                            "properties": {
+                                                "current_page": {
+                                                    "type": "integer"
+                                                },
+                                                "from": {
+                                                    "type": "integer"
+                                                },
+                                                "last_page": {
+                                                    "type": "integer"
+                                                },
+                                                "links": {
+                                                    "type": "object"
+                                                },
+                                                "path": {
+                                                    "type": "string"
+                                                },
+                                                "per_page": {
+                                                    "type": "integer"
+                                                },
+                                                "to": {
+                                                    "type": "integer"
+                                                },
+                                                "total": {
                                                     "type": "integer"
                                                 }
                                             }

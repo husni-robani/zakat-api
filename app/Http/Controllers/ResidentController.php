@@ -15,7 +15,7 @@ class ResidentController extends Controller
     use ApiResponses;
     public function index(){
         try {
-            $residents = ResidentResource::collection(Resident::all());
+            $residents = ResidentResource::collection(Resident::paginate());
         }catch (ModelNotFoundException | \Exception $exception){
             return response()->json([
                 'status' => 'error',
@@ -25,12 +25,12 @@ class ResidentController extends Controller
                 ]
             ]);
         }
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'get all residents success',
-            'data' => $residents
-        ]);
+        return $residents;
+//        return response()->json([
+//            'status' => 'success',
+//            'message' => 'get all residents success',
+//            'data' => $residents
+//        ]);
     }
 
     public function store(StoreResidentRequest $request){

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreServiceHourRequest;
 use App\Http\Resources\ServiceHourResource;
 use App\Models\ServiceHour;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -25,6 +26,24 @@ class ServiceHourController extends Controller
             'get service hours success',
             200,
             $serviceHours
+        );
+    }
+
+    public function store(StoreServiceHourRequest $request){
+        try {
+            $serviceHour = ServiceHour::create($request->toArray());
+        }catch (ModelNotFoundException | \Exception $exception){
+            return $this->responseFailed(
+                'failed to create new service hour',
+                404,
+                $exception->getMessage()
+            );
+        }
+
+        return $this->responseSuccess(
+            'create new service hour successful',
+            201,
+            new ServiceHourResource($serviceHour)
         );
     }
 }

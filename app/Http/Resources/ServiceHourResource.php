@@ -17,7 +17,7 @@ class ServiceHourResource extends JsonResource
         return [
             'day' => $this->day,
             'open' => $this->open,
-            'close' => $this->open
+            'close' => $this->close
         ];
     }
 }

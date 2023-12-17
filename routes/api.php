@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/transactions', [\App\Http\Controllers\TransactionController::class, 'index']);
     Route::post('/transactions/completed/{id_transaction}', [\App\Http\Controllers\TransactionController::class, 'transactionCompleted']);
+
+    Route::post('/service-hours', [\App\Http\Controllers\ServiceHourController::class, 'store']);
 });
 
 

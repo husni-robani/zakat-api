@@ -22,7 +22,7 @@ class TransactionController extends Controller
     use ApiResponses;
     public function index(){
         try {
-            $transactions = Transaction::query()->paginate();
+            $transactions = Transaction::with('donor', 'donationType', 'goodType', 'wallet')->paginate();
         }catch (ModelNotFoundException | \Exception $exception){
             return $this->responseFailed(
                 'Failed to get all transaction',

@@ -50,6 +50,69 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "description": "create new service hour",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": ["day", "open", "close"],
+                                "type": "object",
+                                "properties": {
+                                    "day" : {
+                                        "type": "string"
+                                    },
+                                    "open": {
+                                        "type": "string",
+                                        "pattern": "time ('hh:mm:ss')"
+                                    },
+                                    "close": {
+                                        "type": "string",
+                                        "pattern": "time ('hh:mm:ss')"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "create new service hour success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "day": {
+                                                    "type": "string"
+                                                },
+                                                "open": {
+                                                    "type": "string",
+                                                    "pattern": "time ('hh:mm:ss')"
+                                                },
+                                                "close": {
+                                                    "type": "string",
+                                                    "pattern": "time ('hh:mm:ss')"
+                                                }
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

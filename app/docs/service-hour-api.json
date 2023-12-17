@@ -1,0 +1,119 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "api specification for service hour",
+        "description": "api specification for service hour",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https"
+        }
+    ],
+    "paths": {
+        "/api/service-hour": {
+            "get": {
+                "description": "get all service hour list",
+                "responses": {
+                    "200": {
+                        "description": " success to get service hours list",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "day": {
+                                                    "type": "string"
+                                                },
+                                                "open": {
+                                                    "type": "string",
+                                                    "pattern": "time"
+                                                },
+                                                "close": {
+                                                    "type": "string",
+                                                    "pattern": "time"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "create new service hour",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": ["day", "open", "close"],
+                                "type": "object",
+                                "properties": {
+                                    "day" : {
+                                        "type": "string"
+                                    },
+                                    "open": {
+                                        "type": "string",
+                                        "pattern": "time ('hh:mm:ss')"
+                                    },
+                                    "close": {
+                                        "type": "string",
+                                        "pattern": "time ('hh:mm:ss')"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "create new service hour success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "day": {
+                                                    "type": "string"
+                                                },
+                                                "open": {
+                                                    "type": "string",
+                                                    "pattern": "time ('hh:mm:ss')"
+                                                },
+                                                "close": {
+                                                    "type": "string",
+                                                    "pattern": "time ('hh:mm:ss')"
+                                                }
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

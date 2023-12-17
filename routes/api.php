@@ -37,6 +37,7 @@ Route::post('/transactions/create/{no_kk}', [\App\Http\Controllers\TransactionCo
 Route::post('/transactions/create', [\App\Http\Controllers\TransactionController::class, 'storeGuestTransaction']);
 Route::get('/residents/{no_kk}', [\App\Http\Controllers\ResidentController::class, 'show']);
 Route::get('/donations', [\App\Http\Controllers\DonationTypeController::class, 'index']);
+Route::get('/service-hours', [\App\Http\Controllers\ServiceHourController::class, 'index']);
 
 
 

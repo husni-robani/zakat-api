@@ -30,6 +30,8 @@ Route::middleware('auth')->group(function (){
     Route::post('/transactions/completed/{id_transaction}', [\App\Http\Controllers\TransactionController::class, 'transactionCompleted']);
 
     Route::post('/service-hours', [\App\Http\Controllers\ServiceHourController::class, 'store']);
+
+    Route::get('/history/transactions', [\App\Http\Controllers\HistoryController::class, 'historyTransaction']);
 });
 
 

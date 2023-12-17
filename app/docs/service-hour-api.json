@@ -1,0 +1,56 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "api specification for service hour",
+        "description": "api specification for service hour",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https"
+        }
+    ],
+    "paths": {
+        "/api/service-hour": {
+            "get": {
+                "description": "get all service hour list",
+                "responses": {
+                    "200": {
+                        "description": " success to get service hours list",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "day": {
+                                                    "type": "string"
+                                                },
+                                                "open": {
+                                                    "type": "string",
+                                                    "pattern": "time"
+                                                },
+                                                "close": {
+                                                    "type": "string",
+                                                    "pattern": "time"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

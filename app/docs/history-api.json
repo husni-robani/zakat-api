@@ -1,0 +1,66 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "history api specification",
+        "description": "history api specification",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https"
+        }
+    ],
+    "paths": {
+        "/api/history/transactions": {
+            "get": {
+                "description": "Get transaction history",
+                "responses": {
+                    "200": {
+                        "description": "success to get transaction history",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "donation_type": {
+                                            "type": "string"
+                                        },
+                                        "donor_type": {
+                                            "type": "string"
+                                        },
+                                        "no_kk": {
+                                            "type": "string"
+                                        },
+                                        "donor_name": {
+                                            "type": "string"
+                                        },
+                                        "wallet": {
+                                            "type": "string"
+                                        },
+                                        "good_type": {
+                                            "type": "string"
+                                        },
+                                        "amount": {
+                                            "type": "integer"
+                                        },
+                                        "completed_status": {
+                                            "type": "boolean"
+                                        },
+                                        "created": {
+                                            "type": "string",
+                                            "pattern": "date"
+                                        },
+                                        "updated": {
+                                            "type": "string",
+                                            "pattern": "date"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

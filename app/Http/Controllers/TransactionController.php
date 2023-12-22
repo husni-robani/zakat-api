@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTransactionRequest;
-use App\Http\Resources\TransactionCollection;
 use App\Http\Resources\TransactionResource;
 use App\Mail\TransactionCompleted;
 use App\Models\Donor;
@@ -32,11 +31,14 @@ class TransactionController extends Controller
         }
         return TransactionResource::collection($transactions);
     }
-
-    public function storeResidentTransaction(StoreTransactionRequest $request, DonorService $donorService, TransactionService $transactionService){
+    public function store(StoreTransactionRequest $request, DonorService $donorService, TransactionService $transactionService){
         try {
-            $resident = Resident::where('no_kk', $request->route()->parameter('no_kk'))->firstOrFail();
-            $donor = $donorService->createResidentDonor($request, $resident);
+            if($request->get('donorType') == 1){
+                $resident = Resident::where('no_kk', $request->get('no_kk'))->firstOrFail();
+                $donor = $donorService->createResidentDonor($request, $resident);
+            }else{
+                $donor = $donorService->createGuestDonor($request, Guest::create(['description' => $request->get('description_guest')]));
+            }
             $transaction = $transactionService->createTransaction($request, $donor);
         }catch (ModelNotFoundException | \Exception $exception){
             return $this->responseFailed(
@@ -45,29 +47,10 @@ class TransactionController extends Controller
                 $exception->getMessage()
             );
         }
-
         return $this->responseSuccess(
             'create transaction success',
             201,
             new TransactionResource($transaction)
-        );
-    }
-
-    public function storeGuestTransaction(StoreTransactionRequest $request, DonorService $donorService, TransactionService $transactionService){
-        try {
-            $donor  = $donorService->createGuestDonor($request, Guest::create(['description' => $request->get('description_guest')]));
-        }catch (\Exception $exception){
-            return $this->responseFailed(
-                'Create transaction failed',
-                400,
-                $exception->getMessage()
-            );
-        }
-
-        return $this->responseSuccess(
-            'Create transaction success',
-            201,
-            new TransactionResource($transactionService->createTransaction($request, $donor))
         );
     }
 

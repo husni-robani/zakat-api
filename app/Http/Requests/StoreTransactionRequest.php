@@ -22,7 +22,8 @@ class StoreTransactionRequest extends FormRequest
     public function rules(): array
     {
         return [
-//            'amount' => 'required|integer|min:1000',
+            'donorType' => ['required', 'between:1,2'],
+            'no_kk' => ['required_if:donorType,1'],
             'amount' =>  [
                 'required',
                 'integer',
@@ -38,6 +39,7 @@ class StoreTransactionRequest extends FormRequest
                     }
                 },
             ],
+            'description_guest' => ['nullable', 'string'],
             'description_transaction' => 'nullable|string',
             'donation_types_id' => 'required|in:1,2,3,4',
             'good_types_id' => 'required|in:1,2',

@@ -37,8 +37,7 @@ Route::middleware('auth')->group(function (){
 
 Route::get('/residents', [\App\Http\Controllers\ResidentController::class, 'index']);
 Route::post('/guests', [\App\Http\Controllers\GuestController::class, 'store']);
-Route::post('/transactions/create/{no_kk}', [\App\Http\Controllers\TransactionController::class, 'storeResidentTransaction']);
-Route::post('/transactions/create', [\App\Http\Controllers\TransactionController::class, 'storeGuestTransaction']);
+Route::post('/transactions/create', [\App\Http\Controllers\TransactionController::class, 'store']);
 Route::get('/residents/{no_kk}', [\App\Http\Controllers\ResidentController::class, 'show']);
 Route::get('/donations', [\App\Http\Controllers\DonationTypeController::class, 'index']);
 Route::get('/service-hours', [\App\Http\Controllers\ServiceHourController::class, 'index']);

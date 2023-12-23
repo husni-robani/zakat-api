@@ -14,7 +14,7 @@ class ServiceHourController extends Controller
     use ApiResponses;
     public function index(){
         try {
-            $serviceHours = ServiceHourResource::collection(ServiceHour::all());
+            $serviceHours = ServiceHour::all();
         }catch (ModelNotFoundException | \Exception $exception){
             return $this->responseFailed(
                 'get service hours failed',
@@ -22,11 +22,7 @@ class ServiceHourController extends Controller
                 $exception->getMessage()
             );
         }
-        return $this->responseSuccess(
-            'get service hours success',
-            200,
-            $serviceHours
-        );
+        return ServiceHourResource::collection($serviceHours);
     }
 
     public function store(StoreServiceHourRequest $request){
@@ -40,10 +36,6 @@ class ServiceHourController extends Controller
             );
         }
 
-        return $this->responseSuccess(
-            'create new service hour successful',
-            201,
-            new ServiceHourResource($serviceHour)
-        );
+        return new ServiceHourResource($serviceHour);
     }
 }

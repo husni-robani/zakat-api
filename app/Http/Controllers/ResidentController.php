@@ -15,7 +15,7 @@ class ResidentController extends Controller
     use ApiResponses;
     public function index(){
         try {
-            $residents = ResidentResource::collection(Resident::paginate());
+            $residents = Resident::paginate();
         }catch (ModelNotFoundException | \Exception $exception){
             return response()->json([
                 'status' => 'error',
@@ -25,12 +25,7 @@ class ResidentController extends Controller
                 ]
             ]);
         }
-        return $residents;
-//        return response()->json([
-//            'status' => 'success',
-//            'message' => 'get all residents success',
-//            'data' => $residents
-//        ]);
+        return ResidentResource::collection($residents);
     }
 
     public function store(StoreResidentRequest $request){
@@ -43,12 +38,7 @@ class ResidentController extends Controller
                 $exception->getMessage()
             );
         }
-
-        return $this->responseSuccess(
-            'success create new resident',
-            201,
-            new ResidentResource($resident)
-        );
+        return new ResidentResource($resident);
     }
 
     public function show($no_kk){
@@ -61,12 +51,7 @@ class ResidentController extends Controller
                 $exception->getMessage()
             );
         }
-
-        return $this->responseSuccess(
-            "success",
-            200,
-            new ResidentResource($resident)
-        );
+        return new ResidentResource($resident);
     }
 
     public function destroy($no_kk){
@@ -79,12 +64,7 @@ class ResidentController extends Controller
                 $exception->getMessage()
             );
         }
-
-        return $this->responseSuccess(
-            "success to delete resident",
-            204,
-            ''
-        );
+        return response(null, 204);
     }
 
     public function update(UpdateResidentRequest $request, $no_kk){
@@ -99,10 +79,6 @@ class ResidentController extends Controller
             );
         }
 
-        return $this->responseSuccess(
-            'Success to update resident',
-            201,
-            new ResidentResource($resident)
-        );
+        return new ResidentResource($resident);
     }
 }

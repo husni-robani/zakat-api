@@ -21,11 +21,7 @@ class DonationTypeController extends Controller
             );
         }
 
-        return $this->responseSuccess(
-            'Success to get all donation types',
-            200,
-            DonationTypeResource::collection($donations)
-        );
+        return DonationTypeResource::collection($donations);
     }
 
 }

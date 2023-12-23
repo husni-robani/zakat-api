@@ -22,13 +22,7 @@ class GuestController extends Controller
                 $exception->getMessage()
             );
         }
-        return GuestResource::collection($guests);
-//        return $this->responseSuccess(
-//            'Success to get guests',
-//            200,
-//            GuestResource::collection($guests)
-//        );
-    }
+        return GuestResource::collection($guests);}
 
     public function store(StoreGuestRequest $request){
         try {
@@ -40,11 +34,6 @@ class GuestController extends Controller
                 $exception->getMessage()
             );
         }
-
-        return $this->responseSuccess(
-            'Success to create new guest',
-            '201',
-            new GuestResource($guest)
-        );
+        return new GuestResource($guest);
     }
 }

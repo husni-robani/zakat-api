@@ -24,9 +24,7 @@ trait ApiResponses
     public function responseFailed(string $message, int $statusCode, mixed $error): JsonResponse
     {
         return response()->json([
-            'status' => 'failed',
-            'message' => $message,
-            'error' => $error,
+            $error
         ], $statusCode);
     }
 }

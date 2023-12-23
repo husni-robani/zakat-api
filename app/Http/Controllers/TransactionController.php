@@ -47,11 +47,8 @@ class TransactionController extends Controller
                 $exception->getMessage()
             );
         }
-        return $this->responseSuccess(
-            'create transaction success',
-            201,
-            new TransactionResource($transaction)
-        );
+        return new TransactionResource($transaction);
+
     }
 
     public function transactionCompleted($id_transaction, TransactionService $transactionService){
@@ -66,10 +63,6 @@ class TransactionController extends Controller
             );
         }
 
-        return $this->responseSuccess(
-            'Completed transaction success',
-            201,
-            ''
-        );
+        return response(null, 204);
     }
 }

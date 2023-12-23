@@ -23,10 +23,5 @@ class DonorController extends Controller
         }
 
         return DonorResource::collection($donors);
-//        return $this->responseSuccess(
-//            'Success to get all donor',
-//            200,
-//            DonorResource::collection($donors)
-//        );
     }
 }

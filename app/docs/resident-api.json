@@ -11,9 +11,20 @@
         }
     ],
     "paths": {
-        "/api/residents": {
+        "/api/residents/all/{paginated?}": {
             "get": {
                 "description": "get all resident",
+                "parameters": [
+                    {
+                        "name": "paginated",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "description": "default is false"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "get residents success",

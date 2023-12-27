@@ -13,9 +13,13 @@ use App\Traits\ApiResponses;
 class ResidentController extends Controller
 {
     use ApiResponses;
-    public function index(){
+    public function index(?bool $paginated = false){
         try {
-            $residents = Resident::paginate();
+            $residents = Resident::when($paginated, function () {
+                return Resident::paginate();
+            }, function (){
+                return Resident::all();
+            });
         }catch (ModelNotFoundException | \Exception $exception){
             return response()->json([
                 'status' => 'error',

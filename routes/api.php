@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Transaction;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,15 +34,24 @@ Route::middleware('auth')->group(function (){
     Route::post('/service-hours', [\App\Http\Controllers\ServiceHourController::class, 'store']);
 
     Route::get('/history/transactions', [\App\Http\Controllers\HistoryController::class, 'historyTransaction']);
+
+    Route::get('/export/fitrah', [\App\Http\Controllers\ExportSheetController::class, 'exportFitrah']);
 });
 
 
-Route::get('/residents', [\App\Http\Controllers\ResidentController::class, 'index']);
+Route::get('/residents/all/{paginated?}', [\App\Http\Controllers\ResidentController::class, 'index']);
 Route::post('/guests', [\App\Http\Controllers\GuestController::class, 'store']);
 Route::post('/transactions/create', [\App\Http\Controllers\TransactionController::class, 'store']);
 Route::get('/residents/{no_kk}', [\App\Http\Controllers\ResidentController::class, 'show']);
 Route::get('/donations', [\App\Http\Controllers\DonationTypeController::class, 'index']);
 Route::get('/service-hours', [\App\Http\Controllers\ServiceHourController::class, 'index']);
+
+Route::get('/test', function (){
+//   return \App\Models\Donor::where('donorable_type', 'App\Models\Guest')->first()->donorable;
+//   return Transaction::with('donor.donorable', 'goodType', 'donationType')->get();
+//    return (new \App\Services\TransactionReport())->fitrahResidentTransactions();
+});
+
 
 
 

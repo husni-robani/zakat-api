@@ -15,10 +15,12 @@ class GoodTypeSeeder extends Seeder
     {
         GoodType::insert([
             [
-                'name' => 'BERAS'
+                'name' => 'BERAS',
+                'id' => 1
             ],
             [
-                'name' => 'UANG'
+                'name' => 'UANG',
+                'id' => 2
             ]
         ]);
 

@@ -17,15 +17,19 @@ class DonationTypeSeeder extends Seeder
             [
                 [
                     'name' => 'FITRAH',
+                    'id' => 1
                 ],
                 [
-                    'name' => 'MAL'
+                    'name' => 'MAL',
+                    'id' => '2'
                 ],
                 [
-                    'name' => 'FIDYAH'
+                    'name' => 'FIDYAH',
+                    'id' => 3
                 ],
                 [
-                    'name' => 'SEDEKAH'
+                    'name' => 'SEDEKAH',
+                    'id' => 4
                 ]
             ]
         );

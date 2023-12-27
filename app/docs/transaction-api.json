@@ -116,14 +116,54 @@
         },
         "/api/transactions/create": {
             "post": {
-                "description": "Store guest transcation",
+                "description": "Create Transaction",
                 "requestBody": {
                     "content": {
                         "application/json": {
+                            "examples": {
+                                "Resident Transaction": {
+                                    "value": {
+                                        "donorType": 1,
+                                        "no_kk": "1234",
+                                        "amount": 200000,
+                                        "description_transaction": "Pemberian Infaq",
+                                        "donation_types_id": 4,
+                                        "good_types_id": 2,
+                                        "name" : "Husni Robani",
+                                        "phone_number": "082119802202",
+                                        "email": "husnir2005@gmail.com",
+                                        "description_guest": null
+                                    }
+                                },
+                                "Guest Transaction": {
+                                    "value": {
+                                        "donorType": 1,
+                                        "no_kk": null,
+                                        "amount": 200000,
+                                        "description_transaction": "Pembayaran zakat untuk 4 orang",
+                                        "donation_types_id": 4,
+                                        "good_types_id": 2,
+                                        "name" : "Husni Robani",
+                                        "phone_number": "082119802202",
+                                        "email": "husnir2005@gmail.com",
+                                        "description_guest": "Udin adiknya bu Ina"
+                                    }
+                                }
+
+                            },
                             "schema": {
-                                "required": ["name", "amount", "donation_types_id", "good_types_id", "phone_number"],
+                                "required": ["donorType","name", "amount", "donation_types_id", "good_types_id", "phone_number"],
                                 "type": "object",
                                 "properties": {
+                                    "donorType": {
+                                        "type": "number",
+                                        "pattern": "enum",
+                                        "description": "donor type : 1 = Resident, 2 = Guest"
+                                    },
+                                    "no_kk": {
+                                        "type": "string",
+                                        "description": "required if donorType is 1"
+                                    },
                                     "amount": {
                                         "type": "integer"
                                     },
@@ -132,11 +172,13 @@
                                     },
                                     "donation_types_id": {
                                         "type": "integer",
-                                        "pattern": "id"
+                                        "pattern": "id",
+                                        "description": "donation type 1 = Fitrah, 2 = Mal, 3 = Fidyah, 4 = Sedekah"
                                     },
                                     "good_types_id": {
                                         "type": "integer",
-                                        "pattern": "id"
+                                        "pattern": "id",
+                                        "description": "good type 1 = Beras, 2 = Uang"
                                     },
                                     "name": {
                                         "type": "string"
@@ -150,7 +192,8 @@
                                         "pattern": "email"
                                     },
                                     "description_guest": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "description": "only if donorType is 2"
                                     }
                                 }
                             }
@@ -211,117 +254,6 @@
                                         }
                                     }
                                 }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/transactions/create/{no_kk}": {
-            "post": {
-                "description": "create resident transction",
-                "parameters": [
-                    {
-                        "name": "no_kk",
-                        "required": true,
-                        "in": "path",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": ["name", "amount", "donation_types_id", "good_types_id", "phone_number"],
-                                "type": "object",
-                                "properties": {
-                                    "amount": {
-                                        "type": "integer"
-                                    },
-                                    "description_transaction": {
-                                        "type": "string"
-                                    },
-                                    "donation_types_id": {
-                                        "type": "integer",
-                                        "pattern": "id"
-                                    },
-                                    "good_types_id": {
-                                        "type": "integer",
-                                        "pattern": "id"
-                                    },
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "phone_number": {
-                                        "type": "string",
-                                        "pattern": "phone"
-                                    },
-                                    "email": {
-                                        "type": "string",
-                                        "pattern": "email"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Success to create resident transaction",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "status": {
-                                            "type": "string"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "amount": {
-                                                    "type": "integer"
-                                                },
-                                                "description": {
-                                                    "type": "string",
-                                                    "nullable": true
-                                                },
-                                                "donation_type": {
-                                                    "type": "string"
-                                                },
-                                                "donor": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "name": {
-                                                            "type": "string"
-                                                        },
-                                                        "phone_number": {
-                                                            "type": "string"
-                                                        },
-                                                        "email": {
-                                                            "type": "string"
-                                                        },
-                                                        "donorable_type": {
-                                                            "type": "string"
-                                                        }
-                                                    }
-                                                },
-                                                "wallet": {
-                                                    "type": "string"
-                                                },
-                                                "good_type": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
                             }
                         }
                     }

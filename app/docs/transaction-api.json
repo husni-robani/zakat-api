@@ -129,6 +129,7 @@
                                         "description_transaction": "Pemberian Infaq",
                                         "donation_types_id": 4,
                                         "good_types_id": 2,
+                                        "service_hours_id": 1,
                                         "name" : "Husni Robani",
                                         "phone_number": "082119802202",
                                         "email": "husnir2005@gmail.com",
@@ -143,6 +144,7 @@
                                         "description_transaction": "Pembayaran zakat untuk 4 orang",
                                         "donation_types_id": 4,
                                         "good_types_id": 2,
+                                        "service_hours_id": 1,
                                         "name" : "Husni Robani",
                                         "phone_number": "082119802202",
                                         "email": "husnir2005@gmail.com",
@@ -179,6 +181,10 @@
                                         "type": "integer",
                                         "pattern": "id",
                                         "description": "good type 1 = Beras, 2 = Uang"
+                                    },
+                                    "service_hours_id": {
+                                        "type": "integer",
+                                        "pattern": "id"
                                     },
                                     "name": {
                                         "type": "string"

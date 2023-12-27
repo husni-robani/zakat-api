@@ -6,6 +6,7 @@ use App\Models\DonationType;
 use App\Models\Donor;
 use App\Models\GoodType;
 use App\Models\Resident;
+use App\Models\ServiceHour;
 use App\Models\Transaction;
 use App\Models\Wallet;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -36,7 +37,8 @@ class TransactionSeeder extends Seeder
                 'donation_types_id' => DonationType::first()->id,
                 'donors_id' => Donor::first()->id,
                 'wallets_id' => Wallet::first()->id,
-                'good_types_id' => GoodType::first()->id
+                'good_types_id' => GoodType::first()->id,
+                'service_hours_id' => ServiceHour::first()->id
             ]
         );
 
@@ -46,7 +48,8 @@ class TransactionSeeder extends Seeder
                 'donation_types_id' => DonationType::first()->id,
                 'donors_id' => Donor::first()->id,
                 'wallets_id' => Wallet::first()->id,
-                'good_types_id' => GoodType::first()->id
+                'good_types_id' => GoodType::first()->id,
+                'service_hours_id' => ServiceHour::first()->id
             ]
 
         );

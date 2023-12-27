@@ -30,4 +30,9 @@ class Transaction extends Model
     {
         return $this->belongsTo(GoodType::class, 'good_types_id', 'id');
     }
+
+    public function serviceHour() : BelongsTo
+    {
+        return $this->belongsTo(ServiceHour::class, 'service_hours_id', 'id');
+    }
 }

@@ -14,6 +14,18 @@
         "/api/donors": {
             "get": {
                 "description": "Get all donors",
+                "parameters": [
+                    {
+                        "name": "paginated",
+                        "in": "path",
+                        "required": false,
+                        "description": "determine whether response should paginated or not",
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success to get all donors",
@@ -89,7 +101,38 @@
                                 }
                             }
                         }
+                    },
+                    "200": {
+                        "description": "Success to get all donors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "phone_number": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "pattern": "email"
+                                                },
+                                                "donorable_type": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
+
                 }
             }
         }

@@ -11,9 +11,13 @@ use App\Traits\ApiResponses;
 class DonorController extends Controller
 {
     use ApiResponses;
-    public function index(){
+    public function index(bool $paginated = false){
         try {
-            $donors = Donor::paginate();
+            $donors = Donor::when($paginated, function (){
+                return Donor::paginate();
+            }, function (){
+                return Donor::all();
+            });
         }catch (\Exception$exception ){
             return $this->responseFailed(
                 'Failed to get all donor',

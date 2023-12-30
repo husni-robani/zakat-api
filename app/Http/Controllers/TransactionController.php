@@ -21,9 +21,14 @@ use Maatwebsite\Excel\Facades\Excel;
 class TransactionController extends Controller
 {
     use ApiResponses;
-    public function index(){
+    public function index(bool $paginated = false){
         try {
-            $transactions = Transaction::with('donor', 'donationType', 'goodType', 'wallet')->paginate();
+            $transactions = Transaction::when($paginated, function (){
+                return Transaction::with('donor', 'donationType', 'goodType', 'wallet')->paginate();
+
+            }, function (){
+                return Transaction::with('donor', 'donationType', 'goodType', 'wallet')->get();
+            });
         }catch (ModelNotFoundException | \Exception $exception){
             return $this->responseFailed(
                 'Failed to get all transaction',

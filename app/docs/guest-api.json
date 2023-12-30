@@ -11,9 +11,21 @@
         }
     ],
     "paths": {
-        "/api/guests": {
+        "/api/guests/all/{paginated?}": {
             "get": {
                 "description": "Get all guest",
+                "parameters": [
+                    {
+                        "name": "paginated",
+                        "in": "path",
+                        "required": false,
+                        "description": "determine whether response should paginated or not",
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "success to get all guests",
@@ -82,7 +94,26 @@
                                 }
                             }
                         }
+                    },
+                    "200": {
+                        "description": "success to get all guests without paginated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "description" : {
+                                            "type": "string"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date"
+                                        }
+                                    }                                }
+                            }
+                        }
                     }
+
                 }
             },
             "post": {

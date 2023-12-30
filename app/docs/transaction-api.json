@@ -14,9 +14,22 @@
         "/api/transactions": {
             "get": {
                 "description": "Get all transactions",
+                "parameters": [
+                    {
+                        "name": "paginated",
+                        "in": "path",
+                        "required": false,
+                        "description": "determine whether response should paginated or not",
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    }
+
+                ],
                 "responses": {
                     "200": {
-                        "description": "Success to get all transactions",
+                        "description": "Success to get paginated transactions",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -110,7 +123,53 @@
                                 }
                             }
                         }
+                    },
+                    "200": {
+                        "description": "Success to get all transactions without pagination",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "amount": {
+                                            "type": "integer"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        },
+                                        "donation_type": {
+                                            "type": "string"
+                                        },
+                                        "donor": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "phone_number": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "pattern": "email"
+                                                },
+                                                "donorable_type": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "wallet": {
+                                            "type": "string"
+                                        },
+                                        "good_type": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
+
                 }
             }
         },

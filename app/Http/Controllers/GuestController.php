@@ -12,9 +12,13 @@ use App\Traits\ApiResponses;
 class GuestController extends Controller
 {
     use ApiResponses;
-    public function index(Request $request){
+    public function index(bool $paginated = false){
         try {
-            $guests = Guest::paginate();
+            $guests = Guest::when($paginated, function (){
+                return Guest::paginate();
+            }, function (){
+                return Guest::all();
+            });
         }catch (ModelNotFoundException | \Exception $exception){
             return $this->responseFailed(
                 'Failed to get guests',

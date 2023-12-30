@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ReportFitrah;
+use App\Exports\Sheets\OverallReportResident;
 use App\Models\DonationType;
 use App\Models\Donor;
 use App\Models\Transaction;
@@ -14,7 +15,17 @@ use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class ExportSheetController extends Controller
 {
-    public function exportFitrah(){
+    public function overallReport(){
+        $residentData = Transaction::with('donor.donorable', 'donationType', 'goodType')
+            ->whereHas('donor', function (Builder $builder){
+                $builder->where('donorable_type', 'App\Models\Resident');
+            })
+            ->get();
+//        return $residentData;
+        return \Excel::download(new OverallReportResident($residentData), 'resident.xlsx');
+    }
+
+    public function fidyahReport(){
         $residentTransactions = Transaction::with('donor.donorable', 'donationType', 'goodType')
             ->whereHas('donationType', function (Builder $builder){
                 $builder->where('name', 'FIDYAH');

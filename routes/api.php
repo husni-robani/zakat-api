@@ -35,7 +35,8 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/history/transactions', [\App\Http\Controllers\HistoryController::class, 'historyTransaction']);
 
-    Route::get('/export/fitrah', [\App\Http\Controllers\ExportSheetController::class, 'exportFitrah']);
+    Route::get('/export/fitrah', [\App\Http\Controllers\ExportSheetController::class, 'fidyahReport']);
+    Route::get('/export', [\App\Http\Controllers\ExportSheetController::class, 'overallReport']);
 });
 
 

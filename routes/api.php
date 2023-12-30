@@ -25,15 +25,15 @@ Route::middleware('auth')->group(function (){
     Route::delete('/residents/{no_kk}', [\App\Http\Controllers\ResidentController::class, 'destroy']);
     Route::patch('/residents/{no_kk}', [\App\Http\Controllers\ResidentController::class, 'update']);
 
-    Route::get('/guests', [\App\Http\Controllers\GuestController::class, 'index']);
-    Route::get('/donors', [\App\Http\Controllers\DonorController::class, 'index']);
+    Route::get('/guests/all/{paginated?}', [\App\Http\Controllers\GuestController::class, 'index']);
+    Route::get('/donors/all/{paginated?}', [\App\Http\Controllers\DonorController::class, 'index']);
 
-    Route::get('/transactions', [\App\Http\Controllers\TransactionController::class, 'index']);
+    Route::get('/transactions/all/{paginated?}', [\App\Http\Controllers\TransactionController::class, 'index']);
     Route::post('/transactions/completed/{id_transaction}', [\App\Http\Controllers\TransactionController::class, 'transactionCompleted']);
 
     Route::post('/service-hours', [\App\Http\Controllers\ServiceHourController::class, 'store']);
 
-    Route::get('/history/transactions', [\App\Http\Controllers\HistoryController::class, 'historyTransaction']);
+    Route::get('/history/transactions/all/{paginated?}', [\App\Http\Controllers\HistoryController::class, 'historyTransaction']);
 
     Route::get('/export/fitrah', [\App\Http\Controllers\ExportSheetController::class, 'exportFitrah']);
 });

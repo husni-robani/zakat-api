@@ -11,9 +11,13 @@ use Illuminate\Http\Request;
 class HistoryController extends Controller
 {
     use ApiResponses;
-    public function historyTransaction(){
+    public function historyTransaction(bool $paginated = false){
         try {
-            $history = Transaction::with('wallet', 'goodType', 'donationType', 'donor.donorable')->paginate(10);
+            $history = Transaction::when($paginated, function (){
+                return Transaction::with('wallet', 'goodType', 'donationType', 'donor.donorable')->paginate(10);
+            }, function (){
+                return Transaction::with('wallet', 'goodType', 'donationType', 'donor.donorable')->get();
+            });
         }catch (ModelNotFoundException | \Exception $exception){
             return $this->responseFailed(
                 'get history transcation failed',

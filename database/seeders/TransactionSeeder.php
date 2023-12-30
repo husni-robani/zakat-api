@@ -19,42 +19,6 @@ class TransactionSeeder extends Seeder
      */
     public function run(): void
     {
-//        $transaction = new Transaction();
-//        $transaction->amount = 15000000;
-//        $transaction->description = null;
-//        $transaction->donation_types_id = DonationType::first()->id;
-//        $transaction->donors_id = Donor::first()->id;
-//        $transaction->wallets_id = Wallet::first()->id;
-//        $transaction->good_types_id = GoodType::first()->id;
-//        $transaction->save();
-//
-//        $transaction->wallet->amount += $transaction->amount;
-//        $transaction->wallet->save();
-
-        $transaction = Transaction::create(
-            [
-                'amount' => 150000,
-                'donation_types_id' => DonationType::first()->id,
-                'donors_id' => Donor::first()->id,
-                'wallets_id' => Wallet::first()->id,
-                'good_types_id' => GoodType::first()->id,
-                'service_hours_id' => ServiceHour::first()->id
-            ]
-        );
-
-        $transaction = Transaction::create(
-            [
-                'amount' => 200000,
-                'donation_types_id' => DonationType::first()->id,
-                'donors_id' => Donor::first()->id,
-                'wallets_id' => Wallet::first()->id,
-                'good_types_id' => GoodType::first()->id,
-                'service_hours_id' => ServiceHour::first()->id
-            ]
-
-        );
-        Wallet::find($transaction->wallets_id)->update([
-            'amount' => 350000
-        ]);
+        Transaction::factory()->count(10)->create();
     }
 }

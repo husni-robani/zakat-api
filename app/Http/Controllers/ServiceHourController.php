@@ -38,4 +38,24 @@ class ServiceHourController extends Controller
 
         return new ServiceHourResource($serviceHour);
     }
+
+    public function setAvailableServiceHour(Request $request){
+        $request->validate([
+            'available' => 'required|boolean',
+            'service_hours_id' => 'required|integer'
+        ]);
+        try {
+            $service_hour = ServiceHour::findOrFail($request->get('service_hours_id'));
+            $service_hour->available = $request->get('available');
+            $service_hour->save();
+        }catch (\Exception $exception){
+            return $this->responseFailed(
+                'update available status failed',
+                404,
+                $exception->getMessage()
+            );
+
+        }
+        return response('', 204);
+    }
 }

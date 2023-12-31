@@ -16,6 +16,7 @@ return new class extends Migration
             $table->enum('day', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']);
             $table->time('open');
             $table->time('close');
+            $table->boolean('available')->default(true);
             $table->timestamps();
         });
     }

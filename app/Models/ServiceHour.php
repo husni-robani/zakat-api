@@ -11,7 +11,7 @@ class ServiceHour extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['day', 'open', 'close'];
+    protected $fillable = ['day', 'open', 'close', 'available'];
 
     public function transactions(): HasMany
     {

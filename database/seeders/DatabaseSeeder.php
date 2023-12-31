@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
         ServiceHour::create([
             'day' => 'Senin',
             'open' => '14:00:00',
-            'close' => '18:00:00'
+            'close' => '18:00:00',
+            'available' => true
         ]);
 
         (new DonationTypeSeeder())->run();

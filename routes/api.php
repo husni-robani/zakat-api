@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function (){
     Route::post('/transactions/completed/{id_transaction}', [\App\Http\Controllers\TransactionController::class, 'transactionCompleted']);
 
     Route::post('/service-hours', [\App\Http\Controllers\ServiceHourController::class, 'store']);
+    Route::post('/service-hours/set-available', [\App\Http\Controllers\ServiceHourController::class, 'setAvailableServiceHour']);
 
     Route::get('/history/transactions/all/{paginated?}', [\App\Http\Controllers\HistoryController::class, 'historyTransaction']);
 

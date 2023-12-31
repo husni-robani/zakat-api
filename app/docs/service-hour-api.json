@@ -11,7 +11,7 @@
         }
     ],
     "paths": {
-        "/api/service-hour": {
+        "/api/service-hours": {
             "get": {
                 "description": "get all service hour list",
                 "responses": {
@@ -22,15 +22,12 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "status": {
-                                            "type": "string"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        },
                                         "data": {
                                             "type": "object",
                                             "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
                                                 "day": {
                                                     "type": "string"
                                                 },
@@ -41,11 +38,14 @@
                                                 "close": {
                                                     "type": "string",
                                                     "pattern": "time"
+                                                },
+                                                "available": {
+                                                    "type": "boolean"
                                                 }
                                             }
                                         }
-                                    }
-                                }
+
+                                    }                                }
                             }
                         }
                     }
@@ -108,6 +108,40 @@
                                             }
                                         }
                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/service-hours/set-available": {
+            "post": {
+                "description": "set available is true or false",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "available": {
+                                        "type": "boolean"
+                                    },
+                                    "service_hours_id": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Success to set available status",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object"
                                 }
                             }
                         }

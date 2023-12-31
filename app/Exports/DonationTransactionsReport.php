@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithTitle;
 
-class DonationTransactionsReport implements FromView, WithTitle
+class DonationTransactionsReport implements FromView, WithTitle, ShouldAutoSize
 {
     protected Collection $residentTransactions;
     protected Collection $guestTransactions;

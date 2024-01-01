@@ -31,11 +31,12 @@ class TransactionFactory extends Factory
         return [
             'good_types_id' => $good_types_id,
             'donation_types_id' => $this->faker->randomElement($donationTypes),
-            'description' => $this->faker->paragraphs(5, true),
+            'description' => $this->faker->sentence(5),
             'amount' => $amount,
             'completed' => $this->faker->boolean(),
             'wallets_id' => $walletsId,
-            'donors_id' => $donors_id->value('id')
+            'donors_id' => $donors_id->value('id'),
+            'created_at' => $this->faker->dateTimeBetween('-4 years', 'now')
         ];
 
 

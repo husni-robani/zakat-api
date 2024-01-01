@@ -12,9 +12,4 @@ class ServiceHour extends Model
     use HasFactory;
 
     protected $fillable = ['day', 'open', 'close', 'available'];
-
-    public function transactions(): HasMany
-    {
-        return $this->hasMany(Transaction::class, 'service_hours_id');
-    }
 }

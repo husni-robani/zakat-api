@@ -1,4 +1,4 @@
-<?php
+\<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,7 +20,6 @@ return new class extends Migration
             $table->foreignId('donors_id')->constrained()->cascadeOnDelete();
             $table->foreignId('wallets_id')->constrained()->cascadeOnDelete();
             $table->foreignId('good_types_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('service_hours_id');
             $table->timestamps();
         });
     }

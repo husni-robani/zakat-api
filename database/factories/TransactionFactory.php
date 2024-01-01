@@ -35,7 +35,6 @@ class TransactionFactory extends Factory
             'amount' => $amount,
             'completed' => $this->faker->boolean(),
             'wallets_id' => $walletsId,
-            'service_hours_id' => ServiceHour::inRandomOrder()->first(),
             'donors_id' => $donors_id->value('id')
         ];
 

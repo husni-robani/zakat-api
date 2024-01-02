@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->string('invoice_number')->unique();
             $table->bigInteger('amount');
             $table->text('description')->nullable();
             $table->boolean('completed')->default(false);

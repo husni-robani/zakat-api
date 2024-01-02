@@ -9,6 +9,8 @@ use App\Models\Resident;
 use App\Models\ServiceHour;
 use App\Models\Transaction;
 use App\Models\Wallet;
+use App\Services\TransactionService;
+use Database\Factories\TransactionFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -19,6 +21,15 @@ class TransactionSeeder extends Seeder
      */
     public function run(): void
     {
-        Transaction::factory()->count(100)->create();
+        for ($i = 1; $i <= 4; $i++) {
+            $transactions = Transaction::factory()->count(50)->make([
+                'donation_types_id' => $i,
+            ]);
+            $transactions->each(function ($transaction) use ($i){
+                $transactionData = $transaction->toArray();
+                $transactionData['invoice_number'] = (new TransactionService())->generateInvoiceNumber($i);
+                Transaction::create($transactionData);
+            });
+        }
     }
 }

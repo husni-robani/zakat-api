@@ -44,8 +44,8 @@ class StoreTransactionRequest extends FormRequest
             'donation_types_id' => 'required|in:1,2,3,4',
             'good_types_id' => 'required|in:1,2',
             'name' => 'required',
-            'phone_number' => ['required', 'regex:/^(\+62|0)[0-9]{8,15}$/'],
-            'email' => 'nullable|email',
+            'phone_number' => ['nullable', 'regex:/^(\+62|0)[0-9]{8,15}$/'],
+            'email' => 'required|email',
         ];
     }
 

@@ -10,7 +10,7 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['completed', 'amount', 'description', 'good_types_id', 'donation_types_id', 'wallets_id'];
+    protected $fillable = ['completed', 'amount', 'description', 'good_types_id', 'donation_types_id', 'wallets_id', 'invoice_number'];
     public function donationType(): BelongsTo
     {
         return $this->belongsTo(DonationType::class, 'donation_types_id', 'id');

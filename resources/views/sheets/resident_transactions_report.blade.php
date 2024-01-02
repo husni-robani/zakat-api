@@ -35,7 +35,7 @@
         <tr style="border: lightslategray">
             <td>{{$counter}}</td>
             <td>{{$transaction->created_at->format('Y-m-d')}}</td>
-            <td>{{$transaction->id}}</td>
+            <td>{{$transaction->invoice_number}}</td>
             <td>{{$transaction->donor->name}}</td>
             <td>{{$transaction->donor->donorable->house_number}}</td>
             <td>{{$transaction->donor->donorable->no_kk}}</td>

@@ -1,0 +1,50 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Api documentation for report",
+        "description": "Api documentation for report",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https"
+        }
+    ],
+    "paths": {
+        "/api/export/donation": {
+            "get": {
+                "description": "",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "donation_type_id": {
+                                        "type": "integer"
+                                    },
+                                    "year": {
+                                        "type": "integer",
+                                        "format": "year"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/vnd.ms-excel": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

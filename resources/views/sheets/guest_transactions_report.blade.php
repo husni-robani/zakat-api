@@ -32,7 +32,7 @@
         <tr style="border: lightslategray">
             <td>{{$counter}}</td>
             <td>{{$transaction->created_at->format('Y-m-d')}}</td>
-            <td>{{$transaction->id}}</td>
+            <td>{{$transaction->invoice_number}}</td>
             <td>{{$transaction->donor->name}}</td>
             <td>{{$transaction->goodType->name === 'UANG' ? $transaction->amount : null}}</td>
             <td>{{$transaction->goodType->name === 'BERAS' ? $transaction->amount : null}}</td>

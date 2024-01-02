@@ -16,6 +16,10 @@ use Illuminate\Http\Request;
 class ExportSheetController extends Controller
 {
     public function donationReport(Request $request){
+        $request->validate([
+            'donation_type_id' => ['required', 'numeric', 'digits_between:1,4'],
+            'year' => ['required']
+        ]);
         $guestTransactions = Transaction::with('donor.donorable', 'donationType', 'goodType')
             ->whereYear('updated_at', '=', $request->get('year'))
             ->where('donation_types_id', $request->get('donation_type_id'))

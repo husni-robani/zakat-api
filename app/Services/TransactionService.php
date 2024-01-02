@@ -20,9 +20,9 @@ class TransactionService
             'description' => $request->get('description_transaction'),
             'donation_types_id' => $request->get('donation_types_id'),
             'good_types_id' => $request->get('good_types_id'),
-            'wallets_id' => $wallet->id
+            'wallets_id' => $wallet->id,
+            'invoice_number' => $this->generateInvoiceNumber($request->get('donation_types_id'))
         ]);
-
         return $transaction;
     }
 
@@ -47,5 +47,19 @@ class TransactionService
 
     private function sendingEmailToDonor($email){
         Mail::to($email)->send(new TransactionCompleted());
+    }
+
+    public function generateInvoiceNumber($donationTypeId) : string{
+        //INV-FTR-2024-1
+        $uniqueNumber = Transaction::where('donation_types_id', $donationTypeId)
+                ->whereYear('updated_at', now()->year)
+                ->get()->count() + 1;
+        return match ($donationTypeId) {
+            1 => 'INV-FTR-' . now()->year . '-' . $uniqueNumber,
+            2 => 'INV-MAL-' . now()->year . '-' . $uniqueNumber,
+            3 => 'INV-FDY-' . now()->year . '-' . $uniqueNumber,
+            4 => 'INV-SDK-' . now()->year . '-' . $uniqueNumber,
+            default => 'INV-' . now()->year . '-' . $uniqueNumber,
+        };
     }
 }

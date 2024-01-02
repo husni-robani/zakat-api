@@ -11,7 +11,7 @@
         }
     ],
     "paths": {
-        "/api/transactions": {
+        "/api/transactions/{paginated?}": {
             "get": {
                 "description": "Get all transactions",
                 "parameters": [
@@ -38,6 +38,9 @@
                                         "data": {
                                             "type": "object",
                                             "properties": {
+                                                "invoice_number": {
+                                                    "type": "string"
+                                                },
                                                 "amount": {
                                                     "type": "integer"
                                                 },
@@ -211,7 +214,7 @@
 
                             },
                             "schema": {
-                                "required": ["donorType","name", "amount", "donation_types_id", "good_types_id", "phone_number"],
+                                "required": ["donorType","name", "amount", "donation_types_id", "good_types_id", "email"],
                                 "type": "object",
                                 "properties": {
                                     "donorType": {
@@ -276,6 +279,9 @@
                                         "data": {
                                             "type": "object",
                                             "properties": {
+                                                "invoice_number": {
+                                                    "type": "string"
+                                                },
                                                 "amount": {
                                                     "type": "integer"
                                                 },
@@ -319,12 +325,12 @@
                 }
             }
         },
-        "/api/transactions/completed/{id_transactions}": {
+        "/api/transactions/completed/{invoice_number}": {
             "post": {
                 "description": "make transaction status completed true",
                 "parameters": [
                     {
-                        "name": "id_transactions",
+                        "name": "invoice_number",
                         "in": "path",
                         "required": true,
                         "schema": {

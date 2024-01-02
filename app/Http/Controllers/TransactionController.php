@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\TransactionExport;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Resources\TransactionResource;
 use App\Mail\TransactionCompleted;
@@ -58,9 +57,9 @@ class TransactionController extends Controller
 
     }
 
-    public function transactionCompleted($id_transaction, TransactionService $transactionService){
+    public function transactionCompleted($invoice_number, TransactionService $transactionService){
         try {
-            $transaction = Transaction::findOrFail($id_transaction);
+            $transaction = Transaction::where('invoice_number', $invoice_number)->firstOrFail();
             $transactionService->makeCompletedStatusTrue($transaction);
         }catch (ModelNotFoundException | \Exception $exception){
             return $this->responseFailed(

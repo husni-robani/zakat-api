@@ -29,15 +29,14 @@ Route::middleware('auth')->group(function (){
     Route::get('/donors/all/{paginated?}', [\App\Http\Controllers\DonorController::class, 'index']);
 
     Route::get('/transactions/all/{paginated?}', [\App\Http\Controllers\TransactionController::class, 'index']);
-    Route::post('/transactions/completed/{id_transaction}', [\App\Http\Controllers\TransactionController::class, 'transactionCompleted']);
+    Route::post('/transactions/completed/{invoice_number}', [\App\Http\Controllers\TransactionController::class, 'transactionCompleted']);
 
     Route::post('/service-hours', [\App\Http\Controllers\ServiceHourController::class, 'store']);
     Route::post('/service-hours/set-available', [\App\Http\Controllers\ServiceHourController::class, 'setAvailableServiceHour']);
 
     Route::get('/history/transactions/all/{paginated?}', [\App\Http\Controllers\HistoryController::class, 'historyTransaction']);
 
-    Route::get('/export/fitrah', [\App\Http\Controllers\ExportSheetController::class, 'donationReport']);
-    Route::get('/export', [\App\Http\Controllers\ExportSheetController::class, 'overallReport']);
+    Route::get('/export/donation', [\App\Http\Controllers\ExportSheetController::class, 'donationReport']);
 });
 
 
@@ -49,9 +48,10 @@ Route::get('/donations', [\App\Http\Controllers\DonationTypeController::class, '
 Route::get('/service-hours', [\App\Http\Controllers\ServiceHourController::class, 'index']);
 
 Route::get('/test', function (){
-//   return \App\Models\Donor::where('donorable_type', 'App\Models\Guest')->first()->donorable;
-//   return Transaction::with('donor.donorable', 'goodType', 'donationType')->get();
-//    return (new \App\Services\TransactionReport())->fitrahResidentTransactions();
+    return  Transaction::where('donation_types_id', 3)
+            ->whereYear('updated_at', now()->year)
+            ->get()->count();
+
 });
 
 

@@ -36,7 +36,8 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/history/transactions/all/{paginated?}', [\App\Http\Controllers\HistoryController::class, 'historyTransaction']);
 
-    Route::get('/export/fitrah', [\App\Http\Controllers\ExportSheetController::class, 'exportFitrah']);
+    Route::get('/export/fitrah', [\App\Http\Controllers\ExportSheetController::class, 'donationReport']);
+    Route::get('/export', [\App\Http\Controllers\ExportSheetController::class, 'overallReport']);
 });
 
 

@@ -21,7 +21,7 @@ class DonationTypeSeeder extends Seeder
                 ],
                 [
                     'name' => 'MAL',
-                    'id' => '2'
+                    'id' => 2
                 ],
                 [
                     'name' => 'FIDYAH',

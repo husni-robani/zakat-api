@@ -159,11 +159,11 @@
                 }
             }
         },
-        "/api/residents/{no_kk}": {
+        "/api/residents/{house_number}": {
             "get": {
                 "parameters": [
                     {
-                        "name": "no_kk",
+                        "name": "house_number",
                         "in": "path",
                         "required": true,
                         "schema": {

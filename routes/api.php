@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function (){
 Route::get('/residents/all/{paginated?}', [\App\Http\Controllers\ResidentController::class, 'index']);
 Route::post('/guests', [\App\Http\Controllers\GuestController::class, 'store']);
 Route::post('/transactions/create', [\App\Http\Controllers\TransactionController::class, 'store']);
-Route::get('/residents/{no_kk}', [\App\Http\Controllers\ResidentController::class, 'show']);
+Route::get('/residents/{house_number}', [\App\Http\Controllers\ResidentController::class, 'show']);
 Route::get('/donations', [\App\Http\Controllers\DonationTypeController::class, 'index']);
 Route::get('/service-hours', [\App\Http\Controllers\ServiceHourController::class, 'index']);
 

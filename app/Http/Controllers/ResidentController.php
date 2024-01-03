@@ -45,9 +45,9 @@ class ResidentController extends Controller
         return new ResidentResource($resident);
     }
 
-    public function show($no_kk){
+    public function show($house_number){
         try {
-            $resident = Resident::where('no_kk', $no_kk)->firstOrFail();
+            $resident = Resident::where('house_number', $house_number)->firstOrFail();
         }catch (ModelNotFoundException | \Exception $exception){
             return $this->responseFailed(
                 'failed',

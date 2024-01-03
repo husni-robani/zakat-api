@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('residents', function (Blueprint $table) {
             $table->id();
             $table->string('no_kk')->unique();
-            $table->string('house_number');
+            $table->string('house_number')->unique();
             $table->integer('total_muzaki');
             $table->timestamps();
         });

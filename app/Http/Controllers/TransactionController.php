@@ -14,20 +14,38 @@ use App\Services\TransactionService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponses;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TransactionController extends Controller
 {
     use ApiResponses;
-    public function index(bool $paginated = false){
+    public function index(Request $request){
         try {
-            $transactions = Transaction::when($paginated, function (){
-                return Transaction::with('donor', 'donationType', 'goodType', 'wallet')->paginate();
+            $transactions = Transaction::query();
 
-            }, function (){
-                return Transaction::with('donor', 'donationType', 'goodType', 'wallet')->get();
+            $transactions->when($request->query('status') === 'completed', function ($query) {
+                $query->where('completed', true);
             });
+
+            $transactions->when($request->query('status') === 'uncompleted', function ($query) {
+                $query->where('completed', false);
+            });
+
+            $transactions->when($request->query('timeframe') === 'weekly', function ($query) {
+                $last_week = Carbon::now()->subWeek();
+                $query->where('created_at', '>=', $last_week);
+            });
+
+            $transactions->when($request->query('timeframe') === 'monthly', function ($query) {
+                $last_month = Carbon::now()->subMonth();
+                $query->where('created_at', '>=', $last_month);
+            });
+             $transactions = $request->get('paginate') == 'true' ? $transactions->paginate() : $transactions->get();
+
+
         }catch (ModelNotFoundException | \Exception $exception){
             return $this->responseFailed(
                 'Failed to get all transaction',

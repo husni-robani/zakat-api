@@ -11,20 +11,41 @@
         }
     ],
     "paths": {
-        "/api/transactions/{paginated?}": {
+        "/api/transactions": {
             "get": {
                 "description": "Get all transactions",
                 "parameters": [
                     {
-                        "name": "paginated",
-                        "in": "path",
+                        "name": "status",
+                        "in": "query",
                         "required": false,
-                        "description": "determine whether response should paginated or not",
+                        "allowEmptyValue": true,
+                        "description": "determine whether response is completed transaction or not. value = completed, uncompleted, empty for all",
                         "schema": {
-                            "type": "boolean",
-                            "default": false
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "timeframe",
+                        "in": "query",
+                        "required": false,
+                        "allowEmptyValue": true,
+                        "description": "determine whether timeframe response is weekly or monthly. value = weekly, monthly, empty for all",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "paginate",
+                        "in": "query",
+                        "required": false,
+                        "allowEmptyValue": true,
+                        "description": "determine whether response is paginated or not. value = true or false",
+                        "schema": {
+                            "type": "string"
                         }
                     }
+
 
                 ],
                 "responses": {

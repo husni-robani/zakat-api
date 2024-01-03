@@ -23,7 +23,7 @@ class StoreTransactionRequest extends FormRequest
     {
         return [
             'donorType' => ['required', 'between:1,2'],
-            'no_kk' => ['required_if:donorType,1'],
+            'house_number' => ['required_if:donorType,1'],
             'amount' =>  [
                 'required',
                 'integer',

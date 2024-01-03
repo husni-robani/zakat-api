@@ -22,8 +22,8 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::middleware('auth')->group(function (){
     Route::post('/residents', [\App\Http\Controllers\ResidentController::class, 'store']);
-    Route::delete('/residents/{no_kk}', [\App\Http\Controllers\ResidentController::class, 'destroy']);
-    Route::patch('/residents/{no_kk}', [\App\Http\Controllers\ResidentController::class, 'update']);
+    Route::delete('/residents/{house_number}', [\App\Http\Controllers\ResidentController::class, 'destroy']);
+    Route::patch('/residents/{house_number}', [\App\Http\Controllers\ResidentController::class, 'update']);
 
     Route::get('/guests/all/{paginated?}', [\App\Http\Controllers\GuestController::class, 'index']);
     Route::get('/donors/all/{paginated?}', [\App\Http\Controllers\DonorController::class, 'index']);

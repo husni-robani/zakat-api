@@ -40,7 +40,7 @@ class TransactionController extends Controller
     public function store(StoreTransactionRequest $request, DonorService $donorService, TransactionService $transactionService){
         try {
             if($request->get('donorType') == 1){
-                $resident = Resident::where('no_kk', $request->get('no_kk'))->firstOrFail();
+                $resident = Resident::where('house_number', $request->get('house_number'))->firstOrFail();
                 $donor = $donorService->createResidentDonor($request, $resident);
             }else{
                 $donor = $donorService->createGuestDonor($request, Guest::create(['description' => $request->get('description_guest')]));

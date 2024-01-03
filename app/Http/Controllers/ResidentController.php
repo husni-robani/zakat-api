@@ -58,9 +58,9 @@ class ResidentController extends Controller
         return new ResidentResource($resident);
     }
 
-    public function destroy($no_kk){
+    public function destroy($house_number){
         try {
-            Resident::where('no_kk', $no_kk)->firstOrFail()->delete();
+            Resident::where('house_number', $house_number)->firstOrFail()->delete();
         }catch (ModelNotFoundException | \Exception $exception){
             return $this->responseFailed(
                 "failed to delete resident",
@@ -71,9 +71,9 @@ class ResidentController extends Controller
         return response(null, 204);
     }
 
-    public function update(UpdateResidentRequest $request, $no_kk){
+    public function update(UpdateResidentRequest $request, $house_number){
         try {
-            $resident = Resident::where('no_kk', $no_kk)->firstOrFail();
+            $resident = Resident::where('house_number', $house_number)->firstOrFail();
             $resident->update($request->all());
         }catch (ModelNotFoundException | \Exception $exception){
             return $this->responseFailed(

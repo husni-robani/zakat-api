@@ -23,7 +23,7 @@ class StoreResidentRequest extends FormRequest
     {
         return [
             'no_kk' => 'required|string|unique:residents,no_kk',
-            'house_number' => 'required|string',
+            'house_number' => 'required|string|unique:residents,house_number',
             'total_muzaki' => 'required|integer'
         ];
     }

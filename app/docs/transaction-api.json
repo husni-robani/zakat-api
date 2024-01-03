@@ -186,7 +186,7 @@
                                 "Resident Transaction": {
                                     "value": {
                                         "donorType": 1,
-                                        "no_kk": "1234",
+                                        "no_kk": "A13",
                                         "amount": 200000,
                                         "description_transaction": "Pemberian Infaq",
                                         "donation_types_id": 4,
@@ -222,7 +222,7 @@
                                         "pattern": "enum",
                                         "description": "donor type : 1 = Resident, 2 = Guest"
                                     },
-                                    "no_kk": {
+                                    "house_number": {
                                         "type": "string",
                                         "description": "required if donorType is 1"
                                     },

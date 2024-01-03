@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/guests/all/{paginated?}', [\App\Http\Controllers\GuestController::class, 'index']);
     Route::get('/donors/all/{paginated?}', [\App\Http\Controllers\DonorController::class, 'index']);
 
-    Route::get('/transactions/all/{paginated?}', [\App\Http\Controllers\TransactionController::class, 'index']);
+    Route::get('/transactions', [\App\Http\Controllers\TransactionController::class, 'index']);
     Route::post('/transactions/completed/{invoice_number}', [\App\Http\Controllers\TransactionController::class, 'transactionCompleted']);
 
     Route::post('/service-hours', [\App\Http\Controllers\ServiceHourController::class, 'store']);
@@ -47,10 +47,15 @@ Route::get('/residents/{house_number}', [\App\Http\Controllers\ResidentControlle
 Route::get('/donations', [\App\Http\Controllers\DonationTypeController::class, 'index']);
 Route::get('/service-hours', [\App\Http\Controllers\ServiceHourController::class, 'index']);
 
-Route::get('/test', function (){
-    return  Transaction::where('donation_types_id', 3)
-            ->whereYear('updated_at', now()->year)
-            ->get()->count();
+Route::get('/test', function (Request $request){
+    $weekly = \Illuminate\Support\Carbon::now()->subWeek();
+    return Transaction::where('created_at', '>=', $weekly)->get();
+//    return $unCompletedTransactions->when($request->query('filter') == 'weekly', function ($query){
+//        $lastWeek = \Illuminate\Support\Carbon::now()->subWeek();
+//       return Transaction::all()->sortBy(function ($record) use ($lastWeek){
+//           return $record->created_at->gte($lastWeek);
+//       });
+//    });
 
 });
 

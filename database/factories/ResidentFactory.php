@@ -20,7 +20,7 @@ class ResidentFactory extends Factory
     {
         return [
             'no_kk' => fake()->unique()->numerify('##########'),
-            'house_number' => fake()->numerify('##A'),
+            'house_number' => fake()->unique()->numerify('##A'),
             'total_muzaki' => fake()->numberBetween(1, 5),
         ];
     }

@@ -30,19 +30,19 @@
                         "in": "query",
                         "required": false,
                         "allowEmptyValue": true,
-                        "description": "determine whether timeframe response is weekly or monthly. value = weekly, monthly, empty for all",
+                        "description": "determine whether timeframe response is weekly or monthly. value = last_week, last_month, empty for all",
                         "schema": {
                             "type": "string"
                         }
                     },
                     {
-                        "name": "paginate",
+                        "name": "paginated",
                         "in": "query",
                         "required": false,
                         "allowEmptyValue": true,
-                        "description": "determine whether response is paginated or not. value = true or false",
+                        "description": "determine whether response is paginated or not. value is how much data in one page",
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         }
                     }
 

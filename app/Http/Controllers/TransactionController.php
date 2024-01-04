@@ -34,16 +34,16 @@ class TransactionController extends Controller
                 $query->where('completed', false);
             });
 
-            $transactions->when($request->query('timeframe') === 'weekly', function ($query) {
+            $transactions->when($request->query('timeframe') === 'last_week', function ($query) {
                 $last_week = Carbon::now()->subWeek();
                 $query->where('created_at', '>=', $last_week);
             });
 
-            $transactions->when($request->query('timeframe') === 'monthly', function ($query) {
+            $transactions->when($request->query('timeframe') === 'last_month', function ($query) {
                 $last_month = Carbon::now()->subMonth();
                 $query->where('created_at', '>=', $last_month);
             });
-             $transactions = $request->get('paginate') == 'true' ? $transactions->paginate() : $transactions->get();
+             $transactions = $request->get('paginated') ? $transactions->orderByDesc('created_at')->paginate($request->query('paginated')) : $transactions->orderByDesc('created_at')->get();
 
 
         }catch (ModelNotFoundException | \Exception $exception){

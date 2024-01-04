@@ -23,7 +23,8 @@ class TransactionResource extends JsonResource
             'donor' => new DonorResource($this->donor),
             'wallet' => $this->wallet->name,
             'good_type' => $this->goodType->name,
-            'completed_status' => $this->completed
+            'completed_status' => $this->completed,
+            'created_at' => $this->created_at
         ];
     }
 

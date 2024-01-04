@@ -30,11 +30,11 @@ class StoreTransactionRequest extends FormRequest
                 function ($attribute, $value, $fail) {
                     $good_types_id = $this->input('good_types_id');
 
-                    if ($good_types_id == 1 && $value < 1000) {
+                    if ($good_types_id == 2 && $value < 1000) {
                         $fail("masukan jumlah uang dengan minimal Rp 1.000");
                     }
 
-                    if ($good_types_id == 2 && $value < 1) {
+                    if ($good_types_id == 1 && $value < 1) {
                         $fail("minimal beras 1kg");
                     }
                 },

@@ -16,12 +16,33 @@
                 "description": "Get all donors",
                 "parameters": [
                     {
-                        "name": "paginated",
-                        "in": "path",
+                        "name": "type",
+                        "in": "query",
                         "required": false,
-                        "description": "determine whether response should paginated or not",
+                        "description": "determine whether response is only guest, resident, or both. value = guest, resident",
                         "schema": {
-                            "type": "boolean",
+                            "type": "string",
+                            "default": false
+                        }
+                    },
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "required": false,
+                        "description": "put the keyword weather name or house_number",
+                        "schema": {
+                            "type": "string",
+                            "default": false
+                        }
+                    },
+
+                    {
+                        "name": "paginated",
+                        "in": "query",
+                        "required": false,
+                        "description": "determine whether response should paginated or not. value is how much data should include in one page, for example 10",
+                        "schema": {
+                            "type": "integer",
                             "default": false
                         }
                     }

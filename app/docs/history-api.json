@@ -11,18 +11,53 @@
         }
     ],
     "paths": {
-        "/api/history/transactions/all/{paginated?}": {
+        "/api/history/transactions": {
             "get": {
                 "description": "Get transaction history",
                 "parameters": [
                     {
-                        "name": "paginated",
-                        "in": "path",
+                        "name": "q",
+                        "in": "query",
                         "required": false,
-                        "description": "determine whether response should paginated or not",
+                        "description": "search history by invoice_number, donor name, house_number, no_kk",
                         "schema": {
-                            "type": "boolean",
-                            "default": false
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "good_type_id",
+                        "in": "query",
+                        "required": false,
+                        "description": "filter by good type, value is id of good type",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "donation_type_id",
+                        "in": "query",
+                        "required": false,
+                        "description": "filter by donation type, value is id of donation type",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "wallet_type_id",
+                        "in": "query",
+                        "required": false,
+                        "description": "filter by wallet, value is id of wallet type",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "donor_type",
+                        "in": "query",
+                        "required": false,
+                        "description": "filter by donor_type, value is resident or guest",
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 ],

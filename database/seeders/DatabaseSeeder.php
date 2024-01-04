@@ -30,10 +30,6 @@ class DatabaseSeeder extends Seeder
         (new GoodTypeSeeder())->run();
         (new WalletSeeder())->run();
         (new TransactionSeeder())->run();
-
-//        (new DonorSeeder())->run();
-//        (new ResidentSeeder())->run();
-//        (new GuestSeeder())->run();
-//        (new DistributionSeeder())->run();
+        (new DistributionSeeder())->run();
     }
 }

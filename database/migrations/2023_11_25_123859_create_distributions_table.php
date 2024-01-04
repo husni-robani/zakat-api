@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('distributions', function (Blueprint $table) {
             $table->id();
+            $table->text('title');
             $table->foreignId('wallet_id')->constrained()->cascadeOnDelete();
             $table->integer('amount');
             $table->text('description')->nullable();

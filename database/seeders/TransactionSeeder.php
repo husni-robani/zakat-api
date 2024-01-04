@@ -22,13 +22,17 @@ class TransactionSeeder extends Seeder
     public function run(): void
     {
         for ($i = 1; $i <= 4; $i++) {
-            $transactions = Transaction::factory()->count(50)->make([
+            $transactions = Transaction::factory()->count(30)->make([
                 'donation_types_id' => $i,
             ]);
             $transactions->each(function ($transaction) use ($i){
                 $transactionData = $transaction->toArray();
                 $transactionData['invoice_number'] = (new TransactionService())->generateInvoiceNumber($i);
-                Transaction::create($transactionData);
+                $transaction = Transaction::create($transactionData);
+                if ($transaction->completed){
+                    $transaction->wallet->addAmount($transaction->amount);
+                }
+
             });
         }
     }

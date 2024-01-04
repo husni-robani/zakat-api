@@ -47,16 +47,20 @@ Route::get('/residents/{house_number}', [\App\Http\Controllers\ResidentControlle
 Route::get('/donations', [\App\Http\Controllers\DonationTypeController::class, 'index']);
 Route::get('/service-hours', [\App\Http\Controllers\ServiceHourController::class, 'index']);
 
-Route::get('/test', function (Request $request){
-    $weekly = \Illuminate\Support\Carbon::now()->subWeek();
-    return Transaction::where('created_at', '>=', $weekly)->get();
-//    return $unCompletedTransactions->when($request->query('filter') == 'weekly', function ($query){
-//        $lastWeek = \Illuminate\Support\Carbon::now()->subWeek();
-//       return Transaction::all()->sortBy(function ($record) use ($lastWeek){
-//           return $record->created_at->gte($lastWeek);
-//       });
-//    });
+Route::get('/distributions', [\App\Http\Controllers\DistributionController::class, 'index']);
+Route::post('/distributions', [\App\Http\Controllers\DistributionController::class, 'store']);
 
+Route::post('/test', function (Request $request){
+
+    \App\Models\Distribution::first()
+        ->addMediaFromRequest('image')
+        ->toMediaCollection();
+
+    return \App\Models\Distribution::first()->getMedia();
+});
+Route::get('/test', function (){
+    $media = \App\Models\Distribution::first()->getMedia();
+    return $media[0]->uuid;
 });
 
 

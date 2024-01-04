@@ -25,11 +25,11 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
 
-        $good_types_id = $this->faker->randomElement([1, 2]);
-        $donationTypeId = $this->faker->randomElement([1, 2, 3, 4]);
+        $good_types_id = $this->faker->numberBetween(1, 2);
+        $donationTypeId = $this->faker->numberBetween(1, 4);
         $amount = $good_types_id == 1
-            ? $this->faker->numberBetween(1, 1000)
-            : $this->faker->numberBetween(1000, 999999999);
+            ? $this->faker->numberBetween(1, 100)
+            : $this->faker->numberBetween(1000, 1000000);
         $walletsId = Wallet::where('good_types_id', $good_types_id)->where('donation_types_id', $donationTypeId)->firstOrFail();
         $donors_id = Donor::factory()->count(1)->create();
         $date = $this->faker->dateTimeBetween('-4 years', 'now');

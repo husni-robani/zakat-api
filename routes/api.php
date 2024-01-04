@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function (){
     Route::patch('/residents/{house_number}', [\App\Http\Controllers\ResidentController::class, 'update']);
 
     Route::get('/guests/all/{paginated?}', [\App\Http\Controllers\GuestController::class, 'index']);
-    Route::get('/donors/all/{paginated?}', [\App\Http\Controllers\DonorController::class, 'index']);
+    Route::get('/donors', [\App\Http\Controllers\DonorController::class, 'index']);
 
     Route::get('/transactions', [\App\Http\Controllers\TransactionController::class, 'index']);
     Route::post('/transactions/completed/{invoice_number}', [\App\Http\Controllers\TransactionController::class, 'transactionCompleted']);
@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function (){
     Route::post('/service-hours', [\App\Http\Controllers\ServiceHourController::class, 'store']);
     Route::post('/service-hours/set-available', [\App\Http\Controllers\ServiceHourController::class, 'setAvailableServiceHour']);
 
-    Route::get('/history/transactions/all/{paginated?}', [\App\Http\Controllers\HistoryController::class, 'historyTransaction']);
+    Route::get('/history/transactions', [\App\Http\Controllers\HistoryController::class, 'historyTransaction']);
 
     Route::get('/export/donation', [\App\Http\Controllers\ExportSheetController::class, 'donationReport']);
 });

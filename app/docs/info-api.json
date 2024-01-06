@@ -1,0 +1,76 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Information API",
+        "description": "Information API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https"
+        }
+    ],
+    "paths": {
+        "/api/info": {
+            "get": {
+                "description": "get the information that include donation_type, good_type, and wallet",
+                "responses": {
+                    "200": {
+                        "description": "success to get info",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "donation_type": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "good_type": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "wallet": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "amount": {
+                                                    "type": "integer"
+                                                },
+                                                "donation_type_id": {
+                                                    "type": "integer"
+                                                },
+                                                "good_type_id": {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

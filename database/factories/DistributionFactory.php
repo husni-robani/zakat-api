@@ -31,7 +31,8 @@ class DistributionFactory extends Factory
             'amount' => $amount,
             'title' => fake()->text(20),
             'description' => fake()->realText(50),
-            'created_at' => fake()->dateTimeBetween($wallet->updated_at, now())
+            'created_at' => fake()->dateTimeBetween($wallet->updated_at, now()),
+            'link' => 'https://test-distribution-link.com'
         ];
     }
 

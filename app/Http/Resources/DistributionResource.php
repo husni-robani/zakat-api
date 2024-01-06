@@ -21,7 +21,16 @@ class DistributionResource extends JsonResource
             'amount' => $this->amount,
             'wallet' => $this->wallet_id,
             'description' => $this->description,
-            'images' => $this->GetMedia()
+            'link' => $this->link,
+            'created_at' => $this->created_at,
+            'media' => $this->GetMedia()->map(function ($image){
+                return [
+                    'id' => $image->id,
+                    'name' => $image->name,
+                    'file_name' => $image->file_name,
+                    'url' => $image->getUrl()
+                ];
+            })
         ];
     }
 }

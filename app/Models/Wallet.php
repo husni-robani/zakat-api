@@ -13,13 +13,13 @@ class Wallet extends Model
 
     protected $fillable = ['amount', 'donation_types_id', 'good_types_id', 'name'];
 
-    public function donation_type(): BelongsTo
+    public function donationType(): BelongsTo
     {
-        return $this->belongsTo(DonationType::class);
+        return $this->belongsTo(DonationType::class, 'donation_types_id');
     }
 
-    public function good_type(): BelongsTo{
-        return $this->belongsTo(GoodType::class);
+    public function goodType(): BelongsTo{
+        return $this->belongsTo(GoodType::class, 'good_types_id');
     }
 
     public function transactions() : HasMany
@@ -37,6 +37,13 @@ class Wallet extends Model
             'amount' => $this->amount + $amount
         ]);
 
+        return $this;
+    }
+
+    public function reduceAmount($amount){
+        $this->update([
+            'amount' => $this->amount - $amount
+        ]);
         return $this;
     }
 }

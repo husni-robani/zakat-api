@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('wallet_id')->constrained()->cascadeOnDelete();
             $table->integer('amount');
             $table->text('description')->nullable();
+            $table->text('link')->nullable();
             $table->timestamps();
         });
     }

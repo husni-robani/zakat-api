@@ -1,0 +1,234 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Distribution API documentation",
+        "description": "Distribution API documentation",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https"
+        }
+    ],
+    "paths": {
+        "/api/distributions": {
+            "get": {
+                "description": "get distribution by search and filter",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "description": "search by title",
+                        "required": false,
+                        "in": "query",
+                        "allowEmptyValue": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "wallet_id",
+                        "description": "filter by wallet",
+                        "required": false,
+                        "in": "query",
+                        "allowEmptyValue": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "donation_type_id",
+                        "description": "filter by donation type",
+                        "required": false,
+                        "in": "query",
+                        "allowEmptyValue": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "good_type_id",
+                        "description": "filter by good type",
+                        "required": false,
+                        "in": "query",
+                        "allowEmptyValue": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "paginate",
+                        "description": "determine how much the data should be paginated",
+                        "required": false,
+                        "in": "query",
+                        "allowEmptyValue": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success to get distribution data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "amount": {
+                                            "type": "integer"
+                                        },
+                                        "wallet": {
+                                            "type": "integer"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        },
+                                        "link": {
+                                            "type": "string"
+                                        },
+                                        "created_at": {
+                                            "type": "string"
+                                        },
+                                        "media": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "file_name": {
+                                                    "type": "string"
+                                                },
+                                                "url": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "create distribution",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": ["title", "amount", "donation_type_id", "good_type_id"],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "amount": {
+                                        "type": "integer"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "donation_type_id": {
+                                        "type": "integer"
+                                    },
+                                    "good_type_id": {
+                                        "type": "integer"
+                                    },
+                                    "link": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "image/jpeg": {
+                            "schema": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success to create new distribution",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "amount": {
+                                            "type": "integer"
+                                        },
+                                        "wallet": {
+                                            "type": "integer"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        },
+                                        "link": {
+                                            "type": "string"
+                                        },
+                                        "created_at": {
+                                            "type": "string"
+                                        },
+                                        "media": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "file_name": {
+                                                    "type": "string"
+                                                },
+                                                "url": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/distributions/{distributionId}": {
+            "delete": {
+                "description": "delete distribution",
+                "parameters": [
+                    {
+                        "name": "distributionId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "success to delete distribution"
+                    }
+                }
+            }
+        }
+    }
+}

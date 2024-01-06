@@ -15,7 +15,7 @@ class Distribution extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
-    protected $fillable = ['description', 'amount', 'wallet_id', 'title'];
+    protected $fillable = ['description', 'amount', 'wallet_id', 'title', 'link'];
 
     public function wallet(): BelongsTo
     {

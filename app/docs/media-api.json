@@ -1,0 +1,57 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "media api documentation",
+        "description": "media api documentation",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https"
+        }
+    ],
+    "paths": {
+        "/api/media/{mediaId}": {
+            "get": {
+                "description": "get media by id",
+                "parameters": [
+                    {
+                        "name": "mediaId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success to get image",
+                        "content": {
+                            "image/jpeg": {
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "delete media by id",
+                "parameters": [
+                    {
+                        "name": "mediaId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "success to delete media"
+                    }
+                }
+            }
+        }
+    }
+}

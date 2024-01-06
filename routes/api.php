@@ -37,6 +37,10 @@ Route::middleware('auth')->group(function (){
     Route::get('/history/transactions', [\App\Http\Controllers\HistoryController::class, 'historyTransaction']);
 
     Route::get('/export/donation', [\App\Http\Controllers\ExportSheetController::class, 'donationReport']);
+
+    Route::delete('/distributions/{distributionId}', [\App\Http\Controllers\DistributionController::class, 'destroy']);
+
+    Route::delete('/media/{mediaId}', [\App\Http\Controllers\MediaController::class, 'destroy']);
 });
 
 
@@ -50,6 +54,16 @@ Route::get('/service-hours', [\App\Http\Controllers\ServiceHourController::class
 Route::get('/distributions', [\App\Http\Controllers\DistributionController::class, 'index']);
 Route::post('/distributions', [\App\Http\Controllers\DistributionController::class, 'store']);
 
+Route::get('/media/{mediaId}', [\App\Http\Controllers\MediaController::class, 'show']);
+
+Route::get('/info', function (){
+   return response([
+       'donation_type' => \App\Models\DonationType::all(),
+       'good_type' => \App\Models\GoodType::all(),
+       'wallet' => \App\Models\Wallet::select(['id', 'name', 'amount', 'donation_types_id', 'good_types_id'])->get()
+   ], 200);
+});
+
 Route::post('/test', function (Request $request){
 
     \App\Models\Distribution::first()
@@ -58,9 +72,8 @@ Route::post('/test', function (Request $request){
 
     return \App\Models\Distribution::first()->getMedia();
 });
-Route::get('/test', function (){
-    $media = \App\Models\Distribution::first()->getMedia();
-    return $media[0]->uuid;
+Route::get('/test', function (Request $request){
+   return \Spatie\MediaLibrary\MediaCollections\Models\Media::find(1);
 });
 
 

@@ -168,7 +168,11 @@
                                                     <p style="margin: 0; margin-bottom: 16px;"><strong>{{$invoice_number}}</strong></p>
                                                     <p style="margin: 0; margin-bottom: 16px;"><strong>{{$donation_type}}</strong></p>
                                                     <p style="margin: 0; margin-bottom: 16px;"><strong>{{$good_type}}</strong></p>
-                                                    <p style="margin: 0; margin-bottom: 16px;"><strong>{{$amount}}</strong></p>
+                                                    @if($good_type == 'BERAS')
+                                                        <p style="margin: 0; margin-bottom: 16px;"><strong>{{$amount . 'kg'}}</strong></p>
+                                                    @else
+                                                        <p style="margin: 0; margin-bottom: 16px;"><strong>{{'Rp ' . $amount}} rprppr</strong></p>
+                                                    @endif
                                                     <p style="margin: 0;">Selesai</p>
                                                 </div>
                                             </td>

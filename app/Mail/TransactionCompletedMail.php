@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Http\Resources\TransactionResource;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -9,16 +10,17 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class TransactionCompleted extends Mailable
+class TransactionCompletedMail extends Mailable
 {
     use Queueable, SerializesModels;
+    private TransactionResource $transactionResource;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(TransactionResource $transactionResource)
     {
-        //
+        $this->transactionResource = $transactionResource;
     }
 
     /**
@@ -37,7 +39,15 @@ class TransactionCompleted extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.transaction.completed',
+            view: 'emails.transaction.completed',
+            with: [
+                'invoice_number' => $this->transactionResource->invoice_number,
+                'donation_type' => $this->transactionResource->donationType->name,
+                'good_type' => $this->transactionResource->goodType->name,
+                'amount' => $this->transactionResource->amount,
+                'recipient_email' => $this->transactionResource->donor->email,
+                'donorable_type' => $this->transactionResource->donor->donorable_type
+            ]
         );
     }
 

@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
-use App\Mail\TransactionCompleted;
+use App\Http\Resources\TransactionResource;
+use App\Mail\TransactionCompletedMail;
+use App\Mail\TransactionInvoiceMail;
 use App\Models\Donor;
 use App\Models\Transaction;
 use App\Models\Wallet;
@@ -23,6 +25,7 @@ class TransactionService
             'wallets_id' => $wallet->id,
             'invoice_number' => $this->generateInvoiceNumber($request->get('donation_types_id'))
         ]);
+        $this->sendInvoiceEmailToDonor($transaction->donor->email, new TransactionResource($transaction));
         return $transaction;
     }
 
@@ -39,14 +42,17 @@ class TransactionService
         ]);
 
         if ($transaction->donor->email){
-            $this->sendingEmailToDonor($transaction->donor->email);
+            $this->sendCompletedEmailToDonor($transaction->donor->email, $transaction);
         }
         $transaction->wallet->addAmount($transaction->amount);
         return $transaction;
     }
 
-    private function sendingEmailToDonor($email){
-        Mail::to($email)->send(new TransactionCompleted());
+    private function sendCompletedEmailToDonor($email, Transaction $transaction){
+        Mail::to($email)->send(new TransactionCompletedMail(new TransactionResource($transaction)));
+    }
+    private function sendInvoiceEmailToDonor($email, TransactionResource $transactionResource){
+        Mail::to($email)->send(new TransactionInvoiceMail($transactionResource));
     }
 
     public function generateInvoiceNumber($donationTypeId) : string{

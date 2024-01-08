@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Resources\TransactionResource;
-use App\Mail\TransactionCompleted;
+use App\Mail\TransactionCompletedMail;
 use App\Models\Donor;
 use App\Models\Guest;
 use App\Models\Resident;

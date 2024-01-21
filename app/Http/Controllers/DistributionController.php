@@ -55,7 +55,7 @@ class DistributionController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'title' => 'string',
+            'title' => 'string|required',
             'amount' => 'required|integer',
             'donation_type_id' => 'required|integer',
             'good_type_id' => 'required|integer',
